@@ -1,3 +1,4 @@
+import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/services/testservice.dart';
 import 'package:diet_app/widgets/bottomnavigationbar.dart';
 import 'package:diet_app/Pages/login.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         'login': (context) => LoginPage(),
         'register': (context) => RegisterPage(),
         '/bottomnavigationbar': (context) => BottomNavigationBarPage(),
+        'excercise': (context) => ExercisePage(),
       },
     );
   }

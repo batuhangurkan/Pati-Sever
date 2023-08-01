@@ -1,3 +1,4 @@
+import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/Pages/homepage.dart';
 import 'package:diet_app/Pages/login.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -15,7 +16,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int currentIndex = 0;
   final screens = [
     HomePage(),
-    LoginPage(),
+    ExercisePage(),
     LoginPage(),
     LoginPage(),
     LoginPage(),

@@ -25,10 +25,10 @@ class _HomePageState extends State<HomePage> {
                     fit: BoxFit.cover,
                   )),
             ),
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
+            SingleChildScrollView(
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -154,6 +154,53 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Card(
                         elevation: 10,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, 'excercise');
+                          },
+                          child: Container(
+                            height: 150,
+                            width: MediaQuery.of(context).size.width / 1,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://raw.githubusercontent.com/abuanwar072/Meditation-App/master/assets/images/meditation_bg.png"),
+                                    fit: BoxFit.cover)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomRight,
+                                      colors: [
+                                    Colors.black.withOpacity(.9),
+                                    Colors.black.withOpacity(.3)
+                                  ])),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Text(
+                                    "Egzersizler",
+                                    style: GoogleFonts.ubuntu(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Card(
+                        elevation: 10,
                         child: Container(
                           height: 150,
                           width: MediaQuery.of(context).size.width / 1,
@@ -174,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 Text(
-                                  "Egzersizler",
+                                  "Yiyecek Tercihleri",
                                   style: GoogleFonts.ubuntu(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
@@ -216,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 Text(
-                                  "Yiyecek Tercihleri",
+                                  "Yemek Planı",
                                   style: GoogleFonts.ubuntu(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,

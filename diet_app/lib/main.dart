@@ -11,6 +11,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'Pages/onboardingpage.dart';
 import 'constants/constants.dart';
 import 'Pages/register.dart';
+import 'package:theme_manager/theme_manager.dart';
+import 'package:theme_manager/change_theme_widget.dart';
 
 int? initScreen;
 
@@ -38,24 +40,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      locale: context.locale,
-      supportedLocales: context.supportedLocales,
-      title: 'My Diet App',
-      theme: ThemeData.dark(),
-      themeMode: ThemeMode.system,
-      home: LoadingPage(),
-      //initialRoute:
-      // initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
-      routes: {
-        'loading': (context) => LoadingPage(),
-        'onboard': (context) => OnboardingPage(),
-        'login': (context) => LoginPage(),
-        'register': (context) => RegisterPage(),
-        '/bottomnavigationbar': (context) => BottomNavigationBarPage(),
-        'excercise': (context) => ExercisePage(),
+    return ThemeManager(
+      defaultBrightnessPreference: BrightnessPreference.system,
+      data: (Brightness brightness) => ThemeData(
+        primarySwatch: Colors.blue,
+        hintColor: Colors.blue,
+        brightness: brightness,
+      ),
+      loadBrightnessOnStart: true,
+      themedWidgetBuilder: (BuildContext context, ThemeData theme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: context.localizationDelegates,
+          locale: context.locale,
+          supportedLocales: context.supportedLocales,
+          title: 'My Diet App',
+          theme: theme,
+          home: LoadingPage(),
+          //initialRoute:
+          // initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
+          routes: {
+            'loading': (context) => LoadingPage(),
+            'onboard': (context) => OnboardingPage(),
+            'login': (context) => LoginPage(),
+            'register': (context) => RegisterPage(),
+            '/bottomnavigationbar': (context) => BottomNavigationBarPage(),
+            'excercise': (context) => ExercisePage(),
+          },
+        );
       },
     );
   }

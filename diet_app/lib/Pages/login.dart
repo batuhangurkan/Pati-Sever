@@ -89,6 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: TextDecoration.underline))),
               onTap: () {
                 //şifremi sıfırla
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    'resetpasswordpage', (Route<dynamic> route) => true);
               },
             ),
             SizedBox(

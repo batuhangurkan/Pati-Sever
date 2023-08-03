@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                             context: context,
                             builder: (BuildContext context) {
                               return Container(
-                                height: 200,
+                                height: 250,
                                 color: Colors.white,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -62,10 +62,31 @@ class _HomePageState extends State<HomePage> {
                                     ListTile(
                                       leading: new Icon(Icons.sunny,
                                           color: Colors.black),
-                                      title: new Text(
-                                        'Tema Seçenekleri',
-                                        style: GoogleFonts.ubuntu(
-                                            color: Colors.black),
+                                      title: Container(
+                                        child: new Text(
+                                          'Tema Seçenekleri',
+                                          style: GoogleFonts.ubuntu(
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          if (isDarkMode == true) ...[
+                                            Text(
+                                              "Aktif Tema Renginiz: Koyu Tema",
+                                              style: GoogleFonts.ubuntu(
+                                                  color: Colors.black),
+                                            ),
+                                          ] else ...[
+                                            Text(
+                                              "Aktif Tema Renginiz: Aydınlık Tema",
+                                              style: GoogleFonts.ubuntu(
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ],
                                       ),
                                       trailing: Switch(
                                         value: isDarkMode,
@@ -89,9 +110,7 @@ class _HomePageState extends State<HomePage> {
                                         activeTrackColor: Colors.black,
                                         activeColor: Colors.green,
                                       ),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
+                                      onTap: () {},
                                     ),
                                     ListTile(
                                       leading: new Icon(Icons.notification_add,

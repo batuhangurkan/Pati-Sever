@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/Pages/homepage.dart';
 import 'package:diet_app/Pages/login.dart';
+import 'package:diet_app/Pages/newpostpage.dart';
+import 'package:diet_app/Pages/profilepage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,9 +23,9 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   final screens = [
     HomePage(),
     ExercisePage(),
+    NewPostPage(),
     LoginPage(),
-    LoginPage(),
-    LoginPage(),
+    ProfilePage(),
   ];
 
   @override

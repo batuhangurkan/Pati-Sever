@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  User? user = FirebaseAuth.instance.currentUser;
   bool isDarkMode = false;
   bool isNotification = false;
   String greetings() {
@@ -48,13 +49,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Future updateDisplayName(String newDisplayName) async {
+      var user = await FirebaseAuth.instance.currentUser;
+      user!.updateDisplayName(newDisplayName);
+    }
+
     final User? user = FirebaseAuth.instance.currentUser;
     AuthService _authService = AuthService();
     return Scaffold(
         body: Stack(
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height / 2.7,
+          height: MediaQuery.of(context).size.height / 2.9,
           decoration: BoxDecoration(
               color: Color.fromARGB(255, 8, 197, 119),
               image: DecorationImage(
@@ -179,28 +185,6 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       onTap: () {
                                         Navigator.pop(context);
-                                      },
-                                    ),
-                                    ListTile(
-                                      leading: new Icon(Icons.exit_to_app,
-                                          color: Colors.black),
-                                      title: new Text(
-                                        'Çıkış Yap',
-                                        style: GoogleFonts.ubuntu(
-                                            color: Colors.black),
-                                      ),
-                                      onTap: () {
-                                        IconSnackBar.show(
-                                            context: context,
-                                            label: "Başarıyla çıkış yapıldı!",
-                                            snackBarType: SnackBarType.alert,
-                                            duration: Duration(seconds: 3));
-                                        _authService.signOut();
-                                        Navigator.of(context)
-                                            .pushNamedAndRemoveUntil(
-                                                'login',
-                                                (Route<dynamic> route) =>
-                                                    false);
                                       },
                                     ),
                                   ],

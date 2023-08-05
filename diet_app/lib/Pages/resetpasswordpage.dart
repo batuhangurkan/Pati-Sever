@@ -14,11 +14,11 @@ class ResetPasswordPage extends StatefulWidget {
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
     Future _resetPassword(String email) async {
       try {
         await FirebaseAuth.instance
-            .sendPasswordResetEmail(email: _emailController.text.trim());
+            .sendPasswordResetEmail(email: emailController.text.trim());
         Future.delayed(Duration(seconds: 1), () {});
         SnackBar snackBar = SnackBar(
           content: Text("Şifre sıfırlama maili gönderildi."),
@@ -66,7 +66,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Container(
                 padding: EdgeInsets.all(15),
                 child: TextFormField(
-                  controller: _emailController,
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'E-Posta Adresiniz',
                     hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
@@ -88,23 +88,24 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 child: ElevatedButton(
                   child: Text('Şifremi Sıfırla'),
                   onPressed: () {
-                    if (_emailController.text.isNotEmpty) {
-                      _resetPassword(_emailController.text.trim());
+                    if (emailController.text.contains("@") &&
+                        emailController.text.isNotEmpty) {
+                      _resetPassword(emailController.text.trim());
                       IconSnackBar.show(
                         snackBarType: SnackBarType.save,
                         context: context,
-                        label: "Şifre sıfırlama maili gönderildi." +
-                            _emailController.text.trim(),
+                        label: "Mail gönderildi." + emailController.text.trim(),
                         duration: Duration(seconds: 3),
                       );
-                      _emailController.clear();
-                    } else {
+                    } else if (emailController.text.isEmpty) {
                       IconSnackBar.show(
                         snackBarType: SnackBarType.fail,
                         context: context,
                         label: "Lütfen bir e-posta adresi giriniz.",
                         duration: Duration(seconds: 3),
                       );
+                    } else {
+                      return null;
                     }
                   },
                   style: ElevatedButton.styleFrom(

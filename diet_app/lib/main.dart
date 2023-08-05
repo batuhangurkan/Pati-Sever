@@ -1,7 +1,8 @@
 import 'package:diet_app/Pages/exercisepage.dart';
+import 'package:diet_app/Pages/newpostpage.dart';
+import 'package:diet_app/Pages/profilepage.dart';
 import 'package:diet_app/Pages/resetpasswordpage.dart';
 import 'package:diet_app/firebase_options.dart';
-import 'package:diet_app/services/testservice.dart';
 import 'package:diet_app/widgets/bottomnavigationbar.dart';
 import 'package:diet_app/Pages/login.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -73,6 +74,8 @@ class MyApp extends StatelessWidget {
             '/bottomnavigationbar': (context) => BottomNavigationBarPage(),
             'excercise': (context) => ExercisePage(),
             'resetpasswordpage': (context) => ResetPasswordPage(),
+            'newpostpage': (context) => NewPostPage(),
+            'profilepage': (context) => ProfilePage(),
           },
         );
       },

@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:diet_app/Pages/register.dart';
 import 'package:diet_app/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,6 +27,12 @@ class _LoginPageState extends State<LoginPage> {
     return 'İyi Akşamlar ';
   }
 
+  Future updateDisplayName(String newDisplayName) async {
+    var user = await FirebaseAuth.instance.currentUser;
+    user!.updateDisplayName(newDisplayName);
+  }
+
+  User? user = FirebaseAuth.instance.currentUser;
   TextEditingController _emailcontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
   AuthService _authService = AuthService();
@@ -150,33 +157,44 @@ class _LoginPageState extends State<LoginPage> {
               width: MediaQuery.of(context).size.width / 1.6,
               child: ElevatedButton(
                   onPressed: () {
-                    if (_passwordcontroller.text.isNotEmpty &&
-                        _emailcontroller.text.isNotEmpty) {
-                      _authService.signIn(
-                          _emailcontroller.text, _passwordcontroller.text);
-                      IconSnackBar.show(
-                          duration: Duration(seconds: 3),
-                          context: context,
-                          snackBarType: SnackBarType.save,
-                          label: 'Giriş Yapıldı');
-                      Future.delayed(Duration(seconds: 5), () {});
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/bottomnavigationbar',
-                          (Route<dynamic> route) => false);
-                    } else if (_passwordcontroller.text.isEmpty &&
-                        _emailcontroller.text.isEmpty) {
-                      IconSnackBar.show(
-                          duration: Duration(seconds: 3),
-                          context: context,
-                          snackBarType: SnackBarType.fail,
-                          label: 'Giriş bilgileri boş bırakılamaz');
-                    } else {
-                      IconSnackBar.show(
-                          duration: Duration(seconds: 3),
-                          context: context,
-                          snackBarType: SnackBarType.fail,
-                          label: 'Giriş bilgileri hatalı!');
-                    }
+                    setState(() {
+                      Future.delayed(Duration(seconds: 2), () {
+                        _authService
+                            .signIn(
+                                _emailcontroller.text, _passwordcontroller.text)
+                            .then((value) {
+                          IconSnackBar.show(
+                              context: context,
+                              label: "Giriş yapılan hesap:" +
+                                  _emailcontroller.text,
+                              snackBarType: SnackBarType.save,
+                              duration: Duration(seconds: 3));
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/bottomnavigationbar',
+                              (Route<dynamic> route) => false);
+                        });
+                      });
+                      if (_emailcontroller.text == '' &&
+                          _passwordcontroller.text == '') {
+                        IconSnackBar.show(
+                            context: context,
+                            label: "E-Posta veya Şifre boş bırakılamaz!",
+                            snackBarType: SnackBarType.fail,
+                            duration: Duration(seconds: 3));
+                      } else if (_emailcontroller.text == '') {
+                        IconSnackBar.show(
+                            context: context,
+                            label: "E-Posta boş bırakılamaz!",
+                            snackBarType: SnackBarType.fail,
+                            duration: Duration(seconds: 3));
+                      } else if (_passwordcontroller.text == '') {
+                        IconSnackBar.show(
+                            context: context,
+                            label: "Şifre boş bırakılamaz!",
+                            snackBarType: SnackBarType.fail,
+                            duration: Duration(seconds: 3));
+                      }
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     padding:

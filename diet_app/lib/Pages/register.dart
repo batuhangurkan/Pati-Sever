@@ -18,6 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final currentUser = FirebaseAuth.instance;
   bool _visibility = false;
   bool _visibility2 = false;
+  bool _checkvisibility = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _passwordAgainController = TextEditingController();
@@ -54,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Colors.grey[400],
                           fontWeight: FontWeight.bold)),
                   SizedBox(
-                    height: 50,
+                    height: 25,
                   ),
                   Container(
                     padding: EdgeInsets.all(15),
@@ -181,8 +182,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               _usernameController.text.isNotEmpty) {
                             setState(() {
                               _authService
-                                  .createPerson(_emailController.text,
-                                      _passwordController.text)
+                                  .createPerson(
+                                      _emailController.text,
+                                      _passwordController.text,
+                                      _usernameController.text)
                                   .then((value) {});
                               IconSnackBar.show(
                                   duration: Duration(seconds: 3),
@@ -209,6 +212,65 @@ class _RegisterPageState extends State<RegisterPage> {
                           shape: StadiumBorder(),
                         ),
                         child: Text('Kayıt Ol')),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()));
+                    },
+                    child: Container(
+                        margin: EdgeInsets.only(top: 40),
+                        child: CheckboxListTile(
+                          title: Text(
+                            "Kullanım Koşulları ve Gizlilik Politikası Okudum Kabul ediyorum",
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 15,
+                                color: Colors.grey[400],
+                                fontWeight: FontWeight.normal),
+                          ),
+                          value: _checkvisibility,
+                          onChanged: (newValue) {
+                            setState(() {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                          "Kullanım Koşulları ve Gizlilik Politikası"),
+                                      content: Text(
+                                          "Kullanım Koşulları ve Gizlilik Politikası içeriği"),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              if (_checkvisibility == false) {
+                                                setState(() {
+                                                  _checkvisibility = newValue!;
+                                                });
+                                              }
+                                            },
+                                            child: Text("Kapat")),
+                                        TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                if (_checkvisibility == true) {
+                                                  _checkvisibility = newValue!;
+                                                } else {
+                                                  _checkvisibility = newValue!;
+                                                }
+                                              });
+                                            },
+                                            child: Text("Kabul Ediyorum"))
+                                      ],
+                                    );
+                                  });
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity
+                              .leading, //  <-- leading Checkbox
+                        )),
                   ),
                 ]),
           ),

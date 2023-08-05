@@ -1,5 +1,6 @@
 import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/Pages/resetpasswordpage.dart';
+import 'package:diet_app/firebase_options.dart';
 import 'package:diet_app/services/testservice.dart';
 import 'package:diet_app/widgets/bottomnavigationbar.dart';
 import 'package:diet_app/Pages/login.dart';
@@ -14,11 +15,15 @@ import 'constants/constants.dart';
 import 'Pages/register.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:theme_manager/change_theme_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 int? initScreen;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
   await Permission.notification.isDenied.then((value) {
     if (value) {

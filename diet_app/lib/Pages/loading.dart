@@ -93,16 +93,15 @@ class _LoadingPageState extends State<LoadingPage>
                   child: Column(
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width / 3.5,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Image.asset(
-                            'assets/images/loading2.png',
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                      ),
+                          width: MediaQuery.of(context).size.width / 3.5,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Text("from " + "Screw Devs",
+                                style: GoogleFonts.ubuntu(
+                                    fontSize: 15,
+                                    color: Colors.green[400],
+                                    fontWeight: FontWeight.normal)),
+                          )),
                     ],
                   ),
                 ),

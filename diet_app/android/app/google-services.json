@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352649450594",
+    "project_id": "diet-app-batuhan",
+    "storage_bucket": "diet-app-batuhan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352649450594:android:64ed459d7b67ab74dfed3b",
+        "android_client_info": {
+          "package_name": "com.example.diet_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352649450594-la1rrvh5of8ag0cmshfjh17ggicehf30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqcRqJVuxuWWLaRTFPttjsUaC6nH1Ag2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352649450594-la1rrvh5of8ag0cmshfjh17ggicehf30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

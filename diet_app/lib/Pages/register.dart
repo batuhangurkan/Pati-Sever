@@ -1,4 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diet_app/Pages/login.dart';
+import 'package:diet_app/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -9,6 +15,14 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final currentUser = FirebaseAuth.instance;
+  bool _visibility = false;
+  bool _visibility2 = false;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordAgainController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +59,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      controller: _usernameController,
                       decoration: InputDecoration(
-                        hintText: 'Kullanıcı Adınız',
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: Colors.grey[400],
+                        ),
+                        hintText: 'Adınız Soyadınız',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -61,7 +80,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      controller: _emailController,
                       decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: Colors.grey[400],
+                        ),
                         hintText: 'E-posta',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
@@ -77,7 +101,26 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      obscureText: _visibility,
+                      controller: _passwordController,
                       decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: Colors.grey[400],
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _visibility
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey[400],
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _visibility = !_visibility;
+                            });
+                          },
+                        ),
                         hintText: 'Şifre',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
@@ -93,7 +136,26 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      obscureText: _visibility2,
+                      controller: _passwordAgainController,
                       decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _visibility2
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey[400],
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _visibility2 = !_visibility2;
+                            });
+                          },
+                        ),
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: Colors.grey[400],
+                        ),
                         hintText: 'Şifrenizi Onaylayın',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
@@ -113,7 +175,32 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: MediaQuery.of(context).size.width / 1.6,
                     child: ElevatedButton(
                         onPressed: () {
-                          //Butona basıldığında olacak şeyleri yap
+                          if (_emailController.text.isNotEmpty &&
+                              _passwordController.text.isNotEmpty &&
+                              _passwordAgainController.text.isNotEmpty &&
+                              _usernameController.text.isNotEmpty) {
+                            setState(() {
+                              _authService
+                                  .createPerson(_emailController.text,
+                                      _passwordController.text)
+                                  .then((value) {});
+                              IconSnackBar.show(
+                                  duration: Duration(seconds: 3),
+                                  context: context,
+                                  snackBarType: SnackBarType.save,
+                                  label: 'Başarılı bir şekilde kayıt oldunuz!');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            });
+                          } else {
+                            IconSnackBar.show(
+                                duration: Duration(seconds: 3),
+                                context: context,
+                                snackBarType: SnackBarType.fail,
+                                label: 'Kayıt olurken boş alan bırakılamaz!');
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(

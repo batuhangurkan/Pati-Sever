@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/Pages/homepage.dart';
 import 'package:diet_app/Pages/login.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({Key? key}) : super(key: key);
@@ -25,41 +29,51 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
+      bottomNavigationBar: SalomonBottomBar(
+        margin: EdgeInsets.all(10),
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white54,
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        iconSize: 35,
+        unselectedItemColor: Colors.green,
+        backgroundColor: Color.fromARGB(213, 8, 197, 118),
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'bottomNavigationBarTextHome'.tr().toString(),
-            backgroundColor: Colors.red,
+          /// Home
+          SalomonBottomBarItem(
+            icon: FaIcon(FontAwesomeIcons.house),
+            title: Text("Ana Sayfa"),
+            unselectedColor: Colors.white,
+            selectedColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center_outlined),
-            label: 'Egzersiz',
-            backgroundColor: Colors.blue,
+
+          /// Likes
+          SalomonBottomBarItem(
+            icon: FaIcon(FontAwesomeIcons.dumbbell),
+            title: Text("Egzersizler"),
+            unselectedColor: Colors.white,
+            selectedColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.post_add_rounded),
-            label: 'Paylaşım',
-            backgroundColor: Colors.blue,
+
+          /// Search
+          SalomonBottomBarItem(
+            icon: FaIcon(FontAwesomeIcons.circlePlus),
+            title: Text("Paylaşım"),
+            unselectedColor: Colors.white,
+            selectedColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank_outlined),
-            label: 'Yemek Planım',
-            backgroundColor: Colors.blue,
+
+          SalomonBottomBarItem(
+            icon: FaIcon(FontAwesomeIcons.utensils),
+            title: Text("Yemek Planım"),
+            unselectedColor: Colors.white,
+            selectedColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profil',
-            backgroundColor: Colors.blue,
+
+          /// Profile
+          SalomonBottomBarItem(
+            icon: FaIcon(FontAwesomeIcons.user),
+            title: Text("Profil"),
+            unselectedColor: Colors.white,
+            selectedColor: Colors.white,
           ),
         ],
       ),

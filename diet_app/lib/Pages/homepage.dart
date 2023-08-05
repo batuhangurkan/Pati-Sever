@@ -1,6 +1,11 @@
+import 'package:diet_app/services/auth.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:theme_manager/theme_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,17 +15,48 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isDarkMode = false;
+  bool isNotification = false;
+  String greetings() {
+    final hour = TimeOfDay.now().hour;
+
+    if (hour <= 12) {
+      return 'Günaydın,';
+    } else if (hour <= 17) {
+      return 'İyi Akşamlar,';
+    }
+    return 'İyi geceler,';
+  }
+
+  @override
+  void initState() {
+    _loadSwitchValue();
+    super.initState();
+  }
+
+  void _loadSwitchValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isDarkMode = prefs.getBool('isDarkMode') ?? false;
+    });
+  }
+
+  void _saveTheme(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkMode', value);
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = false;
-    bool isNotification = false;
+    final User? user = FirebaseAuth.instance.currentUser;
+    AuthService _authService = AuthService();
     return Scaffold(
         body: Stack(
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height / 2.5,
+          height: MediaQuery.of(context).size.height / 2.7,
           decoration: BoxDecoration(
-              color: Color(0xFFF5CEB8),
+              color: Color.fromARGB(255, 8, 197, 119),
               image: DecorationImage(
                 image: NetworkImage(
                     "https://raw.githubusercontent.com/abuanwar072/Meditation-App/master/assets/images/undraw_pilates_gpdb.png"),
@@ -41,7 +77,8 @@ class _HomePageState extends State<HomePage> {
                       height: 52,
                       width: 52,
                       decoration: BoxDecoration(
-                          color: Color(0xFFF2BEA1), shape: BoxShape.circle),
+                          color: Color.fromARGB(255, 8, 197, 119),
+                          shape: BoxShape.circle),
                       child: InkWell(
                         child: Icon(Icons.settings),
                         onTap: () {
@@ -49,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                             context: context,
                             builder: (BuildContext context) {
                               return Container(
-                                height: 250,
+                                height: 230,
                                 color: Colors.white,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -90,25 +127,28 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       trailing: Switch(
                                         value: isDarkMode,
-                                        onChanged: (value) {
+                                        onChanged: (newValue) {
                                           setState(() {
                                             if (isDarkMode == true) {
+                                              isDarkMode = newValue;
+                                              _saveTheme(newValue);
                                               ThemeManager.of(context)
                                                   .setBrightnessPreference(
                                                       BrightnessPreference
                                                           .light);
-                                              isDarkMode = false;
                                             } else {
+                                              isDarkMode = newValue;
+                                              _saveTheme(newValue);
                                               ThemeManager.of(context)
                                                   .setBrightnessPreference(
                                                       BrightnessPreference
                                                           .dark);
-                                              isDarkMode = true;
                                             }
                                           });
                                         },
-                                        activeTrackColor: Colors.black,
-                                        activeColor: Colors.green,
+                                        activeTrackColor:
+                                            Color.fromARGB(255, 8, 197, 119),
+                                        activeColor: Colors.white,
                                       ),
                                       onTap: () {},
                                     ),
@@ -120,11 +160,22 @@ class _HomePageState extends State<HomePage> {
                                         style: GoogleFonts.ubuntu(
                                             color: Colors.black),
                                       ),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            "Bildirimleri Aç/Kapat",
+                                            style: GoogleFonts.ubuntu(
+                                                color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
                                       trailing: Switch(
                                         value: isNotification,
                                         onChanged: (value) {},
-                                        activeTrackColor: Colors.black,
-                                        activeColor: Colors.green,
+                                        activeTrackColor: Colors.green,
+                                        activeColor: Colors.white,
                                       ),
                                       onTap: () {
                                         Navigator.pop(context);
@@ -139,6 +190,12 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.black),
                                       ),
                                       onTap: () {
+                                        IconSnackBar.show(
+                                            context: context,
+                                            label: "Başarıyla çıkış yapıldı!",
+                                            snackBarType: SnackBarType.alert,
+                                            duration: Duration(seconds: 3));
+                                        _authService.signOut();
                                         Navigator.of(context)
                                             .pushNamedAndRemoveUntil(
                                                 'login',
@@ -155,11 +212,18 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Text("Günaydın, \nKullanıcı",
+                  Text(greetings(),
                       style: GoogleFonts.ubuntu(
-                          fontSize: 32,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 5, 41, 70))),
+                  Text(
+                    user?.email ?? "",
+                    style: GoogleFonts.ubuntu(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 5, 41, 70)),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -183,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 120,
+                    height: 140,
                   ),
                   Card(
                     elevation: 10,
@@ -192,12 +256,12 @@ class _HomePageState extends State<HomePage> {
                         Navigator.pushNamed(context, 'excercise');
                       },
                       child: Container(
-                        height: 150,
+                        height: 175,
                         width: MediaQuery.of(context).size.width / 1,
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    "https://raw.githubusercontent.com/abuanwar072/Meditation-App/master/assets/images/meditation_bg.png"),
+                                    "https://www.keskinakademi.com/upload/product/fitness-egitmenligi-20220121161057.jpg"),
                                 fit: BoxFit.cover)),
                         child: Container(
                           decoration: BoxDecoration(
@@ -235,12 +299,12 @@ class _HomePageState extends State<HomePage> {
                   Card(
                     elevation: 10,
                     child: Container(
-                      height: 150,
+                      height: 175,
                       width: MediaQuery.of(context).size.width / 1,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(
-                                  "https://raw.githubusercontent.com/abuanwar072/Meditation-App/master/assets/images/meditation_bg.png"),
+                                  "https://www.tazeyore.com/uploads/blog/b/saglikli-beslenme-neden-onemlidir.jpg"),
                               fit: BoxFit.cover)),
                       child: Container(
                         decoration: BoxDecoration(

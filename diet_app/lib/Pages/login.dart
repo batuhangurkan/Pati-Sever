@@ -20,11 +20,11 @@ class _LoginPageState extends State<LoginPage> {
     final hour = TimeOfDay.now().hour;
 
     if (hour <= 12) {
-      return 'Günaydın';
+      return 'Günaydın ☀️';
     } else if (hour <= 17) {
-      return 'İyi Akşamlar';
+      return 'İyi Akşamlar 🌤️';
     }
-    return 'İyi Akşamlar ';
+    return 'İyi Geceler 🌙';
   }
 
   Future updateDisplayName(String newDisplayName) async {
@@ -49,37 +49,56 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 150,
+              height: 120,
             ),
             Center(
-              child: Container(
-                child: Image.asset(
-                  'assets/images/loading.png',
-                  height: 100,
-                  width: 100,
+              child: Image.asset(
+                "assets/images/logo.png",
+                height: 150,
+                width: 150,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              child: Center(
+                child: Text(
+                  greetings() + ",",
+                  style: GoogleFonts.rubik(
+                      color: Colors.black87,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
             SizedBox(
-              height: 75,
-            ),
-            Text("Giriş Sayfası,",
-                style: GoogleFonts.ubuntu(
-                    fontSize: 35,
-                    color: Colors.grey[300],
-                    fontWeight: FontWeight.bold)),
-            SizedBox(
               height: 10,
             ),
             Center(
-              child: Text("Giriş Sayfasına Hoşgeldin!",
+              child: Text(
+                  "Kullanıcı girişini yaparak uygulamaya devam edebilirsin.",
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.ubuntu(
                       fontSize: 15,
-                      color: Colors.grey[300],
+                      color: Colors.grey[600],
                       fontWeight: FontWeight.normal)),
             ),
             SizedBox(
               height: 50,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+                  child: Text(
+                    "E-posta",
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                )
+              ],
             ),
             Container(
               padding: EdgeInsets.all(15),
@@ -88,19 +107,31 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.email,
-                    color: Colors.grey[400],
+                    color: Colors.black,
                   ),
-                  hintText: 'E-Posta',
                   hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
               ),
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+                  child: Text(
+                    "Şifre",
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                )
+              ],
             ),
             Container(
               padding: EdgeInsets.all(15),
@@ -110,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.lock,
-                    color: Colors.grey[400],
+                    color: Colors.black,
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -123,14 +154,13 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                   ),
-                  hintText: 'Şifre',
                   hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
               ),
@@ -141,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text("Şifremi Unuttum",
                       style: GoogleFonts.ubuntu(
                           fontSize: 15,
-                          color: Colors.grey[400],
+                          color: Colors.grey[600],
                           fontWeight: FontWeight.normal,
                           decoration: TextDecoration.underline))),
               onTap: () {

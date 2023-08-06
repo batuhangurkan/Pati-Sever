@@ -96,6 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
               leading: Icon(Icons.person),
               title: Text('Hesap Ayarları'),
               trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.of(context).pushNamed('accountsettings');
+              },
             ),
           ),
           SizedBox(
@@ -159,17 +162,37 @@ class _ProfilePageState extends State<ProfilePage> {
               title: Text('Çıkış Yap'),
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
-                IconSnackBar.show(
+                showDialog(
                     context: context,
-                    label: "Başarıyla çıkış yapıldı!",
-                    snackBarType: SnackBarType.alert,
-                    duration: Duration(seconds: 3));
-                _authService.signOut();
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    'login', (Route<dynamic> route) => false);
+                    builder: (context) => AlertDialog(
+                          title: Text("Çıkış Yap"),
+                          content:
+                              Text("Çıkış yapmak istediğinize emin misiniz?"),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Hayır")),
+                            TextButton(
+                                onPressed: () {
+                                  IconSnackBar.show(
+                                    context: context,
+                                    label:
+                                        "Çıkış yapılan hesap: ${user?.email}",
+                                    snackBarType: SnackBarType.save,
+                                  );
+                                  Navigator.of(context).pop();
+                                  _authService.signOut();
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      'login', (Route<dynamic> route) => false);
+                                },
+                                child: Text("Evet"))
+                          ],
+                        ));
               },
             ),
-          ),
+          )
         ],
       ),
     );

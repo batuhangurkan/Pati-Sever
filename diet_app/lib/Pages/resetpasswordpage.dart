@@ -33,7 +33,17 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     ScrollController _scrollController = ScrollController();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
       ),
       body: SingleChildScrollView(
         controller: _scrollController,
@@ -41,13 +51,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 120,
+                height: 100,
               ),
               Center(
                 child: Image.asset(
-                  'assets/images/loading.png',
+                  'assets/images/logo.png',
                   height: 100,
                   width: 100,
                 ),
@@ -55,27 +66,52 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               SizedBox(
                 height: 75,
               ),
-              Text('My-Diet-App Şifremi Unuttum Sayfası,',
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 20,
-                      color: Colors.grey[400],
+              Text('Şifremi Unuttum,',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rubik(
+                      color: Colors.black87,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold)),
               SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text(
+                    "Üzülmenize hiç gerek yok! Şifrenizi yenilemek çok kolay. E-posta adresinizi girin ve şifrenizi yenileyin.",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.ubuntu(
+                        fontSize: 15,
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.normal)),
+              ),
+              SizedBox(
                 height: 50,
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                    child: Text(
+                      "E-posta adresiniz",
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  )
+                ],
               ),
               Container(
                 padding: EdgeInsets.all(15),
                 child: TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    hintText: 'E-Posta Adresiniz',
                     hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.grey),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
                 ),

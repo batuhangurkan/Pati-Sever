@@ -1,3 +1,4 @@
+import 'package:diet_app/Pages/accountsettings/accountsettings.dart';
 import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
 import 'package:diet_app/Pages/profilepage.dart';
@@ -50,8 +51,6 @@ class MyApp extends StatelessWidget {
     return ThemeManager(
       defaultBrightnessPreference: BrightnessPreference.system,
       data: (Brightness brightness) => ThemeData(
-        primarySwatch: Colors.blue,
-        hintColor: Colors.blue,
         brightness: brightness,
       ),
       loadBrightnessOnStart: true,
@@ -63,9 +62,9 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           title: 'My Diet App',
           theme: theme,
-          home: LoadingPage(),
-          //initialRoute:
-          // initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
+          home: OnboardingPage(),
+          initialRoute:
+              initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
           routes: {
             'loading': (context) => LoadingPage(),
             'onboard': (context) => OnboardingPage(),
@@ -76,6 +75,7 @@ class MyApp extends StatelessWidget {
             'resetpasswordpage': (context) => ResetPasswordPage(),
             'newpostpage': (context) => NewPostPage(),
             'profilepage': (context) => ProfilePage(),
+            'accountsettings': (context) => AccountSettings(),
           },
         );
       },

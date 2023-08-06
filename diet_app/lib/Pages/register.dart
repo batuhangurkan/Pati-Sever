@@ -28,8 +28,20 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_outlined,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
         ),
+        extendBodyBehindAppBar: true,
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -39,23 +51,40 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 15,
+                    height: 120,
                   ),
-                  Image.asset(
-                    'assets/images/loading.png',
-                    height: 100,
-                    width: 100,
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Text("Kullanıcı Kayıt Sayfası",
-                      style: GoogleFonts.ubuntu(
-                          fontSize: 20,
-                          color: Colors.grey[400],
+                  Text("Kayıt Sayfası,",
+                      style: GoogleFonts.rubik(
+                          color: Colors.black87,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold)),
                   SizedBox(
-                    height: 25,
+                    height: 10,
+                  ),
+                  Center(
+                    child: Text(
+                        "Kayıt olmak için lütfen aşağıdaki alanları doldurunuz.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.ubuntu(
+                            fontSize: 15,
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.normal)),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Text(
+                          "Adınız Soyadınız",
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   Container(
                     padding: EdgeInsets.all(15),
@@ -64,9 +93,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.person,
-                          color: Colors.grey[400],
+                          color: Colors.black,
                         ),
-                        hintText: 'Adınız Soyadınız',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -78,6 +106,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Text(
+                          "E-posta",
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
@@ -85,9 +126,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.email,
-                          color: Colors.grey[400],
+                          color: Colors.black,
                         ),
-                        hintText: 'E-posta',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -98,6 +138,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Text(
+                          "Şifre",
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   Container(
                     padding: EdgeInsets.all(15),
@@ -107,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.lock,
-                          color: Colors.grey[400],
+                          color: Colors.black,
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -122,7 +175,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             });
                           },
                         ),
-                        hintText: 'Şifre',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -133,6 +185,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Text(
+                          "Şifre Onayı",
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   Container(
                     padding: EdgeInsets.all(15),
@@ -155,9 +220,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         prefixIcon: Icon(
                           Icons.lock_outline,
-                          color: Colors.grey[400],
+                          color: Colors.black,
                         ),
-                        hintText: 'Şifrenizi Onaylayın',
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -227,8 +291,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             "Kullanım Koşulları ve Gizlilik Politikası Okudum Kabul ediyorum",
                             style: GoogleFonts.ubuntu(
                                 fontSize: 15,
-                                color: Colors.grey[400],
-                                fontWeight: FontWeight.normal),
+                                color: Colors.grey[600],
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.underline),
                           ),
                           value: _checkvisibility,
                           onChanged: (newValue) {

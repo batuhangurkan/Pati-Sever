@@ -70,10 +70,18 @@ class _LoadingPageState extends State<LoadingPage>
               height: 150,
             ),
             Image.asset(
-              "assets/images/loading.png",
+              "assets/images/logo.png",
               width: 150,
               height: 150,
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Text("My Diet App",
+                style: GoogleFonts.ubuntu(
+                    fontSize: 30,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
             Column(
               children: [
                 Center(
@@ -99,7 +107,7 @@ class _LoadingPageState extends State<LoadingPage>
                             child: Text("from " + "Screw Devs",
                                 style: GoogleFonts.ubuntu(
                                     fontSize: 15,
-                                    color: Colors.green[400],
+                                    color: Colors.grey[600],
                                     fontWeight: FontWeight.normal)),
                           )),
                     ],
@@ -113,7 +121,7 @@ class _LoadingPageState extends State<LoadingPage>
                   children: [
                     Text(
                       _feedback,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black),
                     ),
                     TextButton(
                       onPressed: () {
@@ -121,7 +129,7 @@ class _LoadingPageState extends State<LoadingPage>
                       },
                       child: Text(
                         _feedback2,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                     )
                   ],

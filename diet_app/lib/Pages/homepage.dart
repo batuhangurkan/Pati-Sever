@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
         body: Stack(
       children: <Widget>[
         Container(
+          width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 2.9,
           decoration: BoxDecoration(
               color: Color.fromARGB(255, 8, 197, 119),
@@ -231,17 +232,17 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 140,
+                    height: 70,
                   ),
                   Card(
-                    elevation: 10,
+                    elevation: 100,
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, 'excercise');
                       },
                       child: Container(
                         height: 175,
-                        width: MediaQuery.of(context).size.width / 1,
+                        width: 700,
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
@@ -322,6 +323,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 20,
                   ),
+                  Container()
                 ],
               ),
             ),

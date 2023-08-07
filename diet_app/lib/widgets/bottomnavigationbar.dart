@@ -1,8 +1,7 @@
 import 'dart:io';
-
-import 'package:diet_app/Pages/exercisepage.dart';
 import 'package:diet_app/Pages/homepage.dart';
 import 'package:diet_app/Pages/login.dart';
+import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
 import 'package:diet_app/Pages/profilepage.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,10 +21,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int currentIndex = 0;
   final screens = [
     HomePage(),
-    ExercisePage(),
+    MamaPage(),
     NewPostPage(),
-    LoginPage(),
-    ProfilePage(),
   ];
 
   @override
@@ -41,42 +38,29 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         items: [
           /// Home
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.house),
-            title: Text("Ana Sayfa"),
+            icon: FaIcon(FontAwesomeIcons.cat),
+            title: Text(""),
             unselectedColor: Colors.white,
             selectedColor: Colors.white,
           ),
 
           /// Likes
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.dumbbell),
-            title: Text("Egzersizler"),
+            icon: FaIcon(FontAwesomeIcons.moneyCheckDollar),
+            title: Text(""),
             unselectedColor: Colors.white,
             selectedColor: Colors.white,
           ),
 
           /// Search
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.circlePlus),
-            title: Text("Paylaşım"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.white,
-          ),
-
-          SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.utensils),
-            title: Text("Yemek Planım"),
+            icon: FaIcon(FontAwesomeIcons.dog),
+            title: Text(""),
             unselectedColor: Colors.white,
             selectedColor: Colors.white,
           ),
 
           /// Profile
-          SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.user),
-            title: Text("Profil"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.white,
-          ),
         ],
       ),
       body: screens[currentIndex],

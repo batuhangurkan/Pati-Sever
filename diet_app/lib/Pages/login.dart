@@ -20,11 +20,11 @@ class _LoginPageState extends State<LoginPage> {
     final hour = TimeOfDay.now().hour;
 
     if (hour <= 12) {
-      return 'Günaydın ☀️';
+      return 'Günaydın ☀️ Pati sever!';
     } else if (hour <= 17) {
-      return 'İyi Akşamlar 🌤️';
+      return 'İyi Akşamlar 🌤️ Pati sever!';
     }
-    return 'İyi Geceler 🌙';
+    return 'İyi Geceler 🌙 Pati sever!';
   }
 
   Future updateDisplayName(String newDisplayName) async {
@@ -40,228 +40,231 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.deepOrangeAccent,
         body: Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 120,
-            ),
-            Center(
-              child: Image.asset(
-                "assets/images/logo.png",
-                height: 150,
-                width: 150,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              child: Center(
-                child: Text(
-                  greetings() + ",",
-                  style: GoogleFonts.rubik(
-                      color: Colors.black87,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: Text(
-                  "Kullanıcı girişini yaparak uygulamaya devam edebilirsin.",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 15,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.normal)),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Row(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-                  child: Text(
-                    "E-posta",
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: TextFormField(
-                controller: _emailcontroller,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: Colors.black,
-                  ),
-                  hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
+                SizedBox(
+                  height: 120,
+                ),
+                Center(
+                  child: Image.asset(
+                    "assets/images/birman-cat.png",
+                    height: 150,
+                    width: 150,
                   ),
                 ),
-              ),
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-                  child: Text(
-                    "Şifre",
-                    style: TextStyle(
-                      color: Colors.grey[600],
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: Center(
+                    child: Text(
+                      greetings() + ",",
+                      style: GoogleFonts.rubik(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                )
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: TextFormField(
-                controller: _passwordcontroller,
-                obscureText: _visibility,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _visibility ? Icons.visibility : Icons.visibility_off,
-                      color: Colors.grey[400],
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _visibility = !_visibility;
-                      });
-                    },
-                  ),
-                  hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
-              ),
-            ),
-            InkWell(
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(250, 0, 0, 25),
-                  child: Text("Şifremi Unuttum",
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: Text(
+                      "Kullanıcı girişini yaparak uygulamaya devam edebilirsin.",
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.ubuntu(
                           fontSize: 15,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.normal,
-                          decoration: TextDecoration.underline))),
-              onTap: () {
-                //şifremi sıfırla
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    'resetpasswordpage', (Route<dynamic> route) => true);
-              },
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.6,
-              child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      Future.delayed(Duration(seconds: 2), () {
-                        _authService
-                            .signIn(
-                                _emailcontroller.text, _passwordcontroller.text)
-                            .then((value) {
-                          IconSnackBar.show(
-                              context: context,
-                              label: "Giriş yapılan hesap:" +
-                                  _emailcontroller.text,
-                              snackBarType: SnackBarType.save,
-                              duration: Duration(seconds: 3));
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              '/bottomnavigationbar',
-                              (Route<dynamic> route) => false);
-                        });
-                      });
-                      if (_emailcontroller.text == '' &&
-                          _passwordcontroller.text == '') {
-                        IconSnackBar.show(
-                            context: context,
-                            label: "E-Posta veya Şifre boş bırakılamaz!",
-                            snackBarType: SnackBarType.fail,
-                            duration: Duration(seconds: 3));
-                      } else if (_emailcontroller.text == '') {
-                        IconSnackBar.show(
-                            context: context,
-                            label: "E-Posta boş bırakılamaz!",
-                            snackBarType: SnackBarType.fail,
-                            duration: Duration(seconds: 3));
-                      } else if (_passwordcontroller.text == '') {
-                        IconSnackBar.show(
-                            context: context,
-                            label: "Şifre boş bırakılamaz!",
-                            snackBarType: SnackBarType.fail,
-                            duration: Duration(seconds: 3));
-                      }
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding:
-                        EdgeInsets.all(15.0), //content padding inside button
-                    primary: const Color.fromARGB(255, 8, 197, 119),
-                    shape: StadiumBorder(),
+                          color: Colors.grey[200],
+                          fontWeight: FontWeight.normal)),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+                      child: Text(
+                        "E-posta",
+                        style: TextStyle(
+                          color: Colors.grey[200],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: TextFormField(
+                    controller: _emailcontroller,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: Colors.grey[200],
+                      ),
+                      hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
                   ),
-                  child: Text('Giriş Yap')),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()));
-              },
-              child: Container(
-                margin: EdgeInsets.only(top: 40),
-                child: RichText(
-                    text: TextSpan(
-                        text: "Hesabınız yok mu? ",
-                        style: GoogleFonts.poppins(
-                            color: Colors.grey[500], fontSize: 15),
-                        children: [
-                      TextSpan(
-                          text: "Kayıt Olun",
-                          style: TextStyle(
-                              color: Colors.blue,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+                      child: Text(
+                        "Şifre",
+                        style: TextStyle(
+                          color: Colors.grey[200],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: TextFormField(
+                    controller: _passwordcontroller,
+                    obscureText: _visibility,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.grey[200],
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _visibility ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.grey[400],
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _visibility = !_visibility;
+                          });
+                        },
+                      ),
+                      hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  child: Padding(
+                      padding: EdgeInsets.fromLTRB(250, 0, 0, 25),
+                      child: Text("Şifremi Unuttum",
+                          style: GoogleFonts.ubuntu(
                               fontSize: 15,
-                              fontWeight: FontWeight.bold))
-                    ])),
-              ),
+                              color: Colors.grey[200],
+                              fontWeight: FontWeight.normal,
+                              decoration: TextDecoration.underline))),
+                  onTap: () {
+                    //şifremi sıfırla
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        'resetpasswordpage', (Route<dynamic> route) => true);
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.6,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          Future.delayed(Duration(seconds: 2), () {
+                            _authService
+                                .signIn(_emailcontroller.text,
+                                    _passwordcontroller.text)
+                                .then((value) {
+                              IconSnackBar.show(
+                                  context: context,
+                                  label: "Giriş yapılan hesap:" +
+                                      _emailcontroller.text,
+                                  snackBarType: SnackBarType.save,
+                                  duration: Duration(seconds: 3));
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/bottomnavigationbar',
+                                  (Route<dynamic> route) => false);
+                            });
+                          });
+                          if (_emailcontroller.text == '' &&
+                              _passwordcontroller.text == '') {
+                            IconSnackBar.show(
+                                context: context,
+                                label: "E-Posta veya Şifre boş bırakılamaz!",
+                                snackBarType: SnackBarType.fail,
+                                duration: Duration(seconds: 3));
+                          } else if (_emailcontroller.text == '') {
+                            IconSnackBar.show(
+                                context: context,
+                                label: "E-Posta boş bırakılamaz!",
+                                snackBarType: SnackBarType.fail,
+                                duration: Duration(seconds: 3));
+                          } else if (_passwordcontroller.text == '') {
+                            IconSnackBar.show(
+                                context: context,
+                                label: "Şifre boş bırakılamaz!",
+                                snackBarType: SnackBarType.fail,
+                                duration: Duration(seconds: 3));
+                          }
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(
+                            15.0), //content padding inside button
+                        primary: const Color.fromARGB(255, 8, 197, 119),
+                        shape: StadiumBorder(),
+                      ),
+                      child: Text('Giriş Yap')),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterPage()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 40),
+                    child: RichText(
+                        text: TextSpan(
+                            text: "Hesabınız yok mu? ",
+                            style: GoogleFonts.poppins(
+                                color: Colors.grey[200], fontSize: 15),
+                            children: [
+                          TextSpan(
+                              text: "Kayıt Olun",
+                              style: TextStyle(
+                                  color: Colors.blueAccent[200],
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold))
+                        ])),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

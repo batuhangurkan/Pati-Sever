@@ -59,6 +59,7 @@ class _LoadingPageState extends State<LoadingPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepOrangeAccent,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -70,18 +71,13 @@ class _LoadingPageState extends State<LoadingPage>
               height: 150,
             ),
             Image.asset(
-              "assets/images/logo.png",
+              "assets/images/birman-cat.png",
               width: 150,
               height: 150,
             ),
             SizedBox(
               height: 20,
             ),
-            Text("My Diet App",
-                style: GoogleFonts.ubuntu(
-                    fontSize: 30,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)),
             Column(
               children: [
                 Center(
@@ -99,17 +95,17 @@ class _LoadingPageState extends State<LoadingPage>
               children: [
                 Container(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                          width: MediaQuery.of(context).size.width / 3.5,
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: Text("from " + "Screw Devs",
-                                style: GoogleFonts.ubuntu(
-                                    fontSize: 15,
-                                    color: Colors.grey[600],
-                                    fontWeight: FontWeight.normal)),
-                          )),
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Text("from " + "Pati Sever 🐱",
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 20,
+                                color: Colors.grey[200],
+                                fontWeight: FontWeight.normal)),
+                      )),
                     ],
                   ),
                 ),
@@ -121,7 +117,7 @@ class _LoadingPageState extends State<LoadingPage>
                   children: [
                     Text(
                       _feedback,
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white),
                     ),
                     TextButton(
                       onPressed: () {
@@ -129,7 +125,7 @@ class _LoadingPageState extends State<LoadingPage>
                       },
                       child: Text(
                         _feedback2,
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.white),
                       ),
                     )
                   ],

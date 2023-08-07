@@ -1,5 +1,5 @@
 import 'package:diet_app/Pages/accountsettings/accountsettings.dart';
-import 'package:diet_app/Pages/exercisepage.dart';
+import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
 import 'package:diet_app/Pages/profilepage.dart';
 import 'package:diet_app/Pages/resetpasswordpage.dart';
@@ -60,18 +60,18 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           locale: context.locale,
           supportedLocales: context.supportedLocales,
-          title: 'My Diet App',
+          title: 'Pati Sever',
           theme: theme,
           home: OnboardingPage(),
-          initialRoute:
-              initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
+          //initialRoute:
+          // initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
           routes: {
             'loading': (context) => LoadingPage(),
             'onboard': (context) => OnboardingPage(),
             'login': (context) => LoginPage(),
             'register': (context) => RegisterPage(),
             '/bottomnavigationbar': (context) => BottomNavigationBarPage(),
-            'excercise': (context) => ExercisePage(),
+            'mama': (context) => MamaPage(),
             'resetpasswordpage': (context) => ResetPasswordPage(),
             'newpostpage': (context) => NewPostPage(),
             'profilepage': (context) => ProfilePage(),

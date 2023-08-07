@@ -58,7 +58,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               ),
               Center(
                 child: Image.asset(
-                  'assets/images/logo.png',
+                  'assets/images/birman-cat.png',
                   height: 100,
                   width: 100,
                 ),

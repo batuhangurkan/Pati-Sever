@@ -98,10 +98,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                     ),
@@ -131,10 +131,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                     ),
@@ -178,10 +178,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                     ),
@@ -225,10 +225,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                     ),

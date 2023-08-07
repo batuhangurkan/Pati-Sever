@@ -14,21 +14,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepOrangeAccent,
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 100,
+                height: 150,
               ),
               Container(
                 child: Center(
                   child: Text(
                     "Hoşgeldiniz,",
                     style: GoogleFonts.rubik(
-                        color: Colors.black87,
+                        color: Colors.grey[200],
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
@@ -42,10 +42,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      "My-Diet-App uygulamasına hoşgeldiniz. Uygulamayı kullanabilmek için lütfen giriş yapınız. Kayıtlı değilseniz kayıt olabilirsiniz.",
+                      "Pati Sever uygulamasına hoşgeldiniz. Uygulamayı kullanabilmek için lütfen giriş yapın veya kayıt olun.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.grey[600],
+                        color: Colors.grey[200],
                         fontSize: 15,
                       ),
                     ),
@@ -53,11 +53,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 80,
               ),
-              Image.asset("assets/images/onboarding.jpg"),
+              Image.asset(
+                "assets/images/birman-cat.png",
+                height: 150,
+                width: 150,
+              ),
               SizedBox(
-                height: 20,
+                height: 150,
               ),
               Container(
                 width: MediaQuery.of(context).size.width / 1.2,
@@ -87,7 +91,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.all(15.0), //content padding inside button
-                      primary: Color.fromARGB(255, 3, 72, 112),
+                      primary: Colors.blue,
                       shape: StadiumBorder(),
                     ),
                     child: Text('Kayıt Ol')),

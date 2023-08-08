@@ -53,6 +53,7 @@ dependencies:
   cloud_firestore: ^4.8.4
   circle_progress_bar: ^0.1.2
   flutter_credit_card: ^3.0.7
+  m_toast: ^0.2.2
 
 dev_dependencies:
   flutter_test:

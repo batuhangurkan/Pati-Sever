@@ -26,7 +26,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               Container(
                 child: Center(
                   child: Text(
-                    "Hoşgeldiniz,",
+                    "Pati Sever Uygulamasına Hoşgeldiniz!",
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.rubik(
                         color: Colors.grey[200],
                         fontSize: 30,
@@ -91,7 +92,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.all(15.0), //content padding inside button
-                      primary: Colors.blue,
+                      primary: Colors.brown[50],
                       shape: StadiumBorder(),
                     ),
                     child: Text('Kayıt Ol')),

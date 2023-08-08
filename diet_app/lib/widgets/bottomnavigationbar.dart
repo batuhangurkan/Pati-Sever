@@ -32,7 +32,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         margin: EdgeInsets.all(10),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.green,
-        backgroundColor: Color.fromARGB(213, 8, 197, 118),
+        backgroundColor: Colors.brown[50],
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: [
@@ -40,24 +40,24 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.cat),
             title: Text(""),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.white,
+            unselectedColor: Colors.deepOrangeAccent,
+            selectedColor: Colors.deepOrangeAccent,
           ),
 
           /// Likes
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.moneyCheckDollar),
             title: Text(""),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.white,
+            unselectedColor: Colors.deepOrangeAccent,
+            selectedColor: Colors.deepOrangeAccent,
           ),
 
           /// Search
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.dog),
+            icon: FaIcon(FontAwesomeIcons.paw),
             title: Text(""),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.white,
+            unselectedColor: Colors.deepOrangeAccent,
+            selectedColor: Colors.deepOrangeAccent,
           ),
 
           /// Profile

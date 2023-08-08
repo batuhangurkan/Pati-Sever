@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeManager(
-      defaultBrightnessPreference: BrightnessPreference.system,
+      defaultBrightnessPreference: BrightnessPreference.light,
       data: (Brightness brightness) => ThemeData(
         brightness: brightness,
       ),

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
@@ -58,20 +59,31 @@ class _MamaPageState extends State<MamaPage> {
               color: Colors.black,
             )),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              Navigator.of(context).pushNamed('settings');
-            },
-            color: Colors.black,
-          ),
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 5, 0),
+              child: IconButton(
+                icon: FaIcon(
+                  FontAwesomeIcons.shieldCat,
+                  color: Colors.deepOrangeAccent,
+                ),
+                onPressed: () {},
+              )),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 5, 0),
+              child: IconButton(
+                icon: FaIcon(
+                  FontAwesomeIcons.gift,
+                  color: Colors.green,
+                ),
+                onPressed: () {},
+              ))
         ],
         leading: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
-              height: 15,
+              height: 13,
             ),
             CircleAvatar(
                 backgroundImage: AssetImage("assets/images/cat_3382653.png"),
@@ -361,6 +373,221 @@ class _MamaPageState extends State<MamaPage> {
                                       onTap: () {},
                                     ),
                                   ),
+                                ],
+                                if (user?.emailVerified == true) ...[
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                      leading: Icon(Icons.person),
+                                      title: Text('Hesap Ayarları'),
+                                      trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('accountsettings');
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                      leading: Icon(Icons.history),
+                                      title: Text('Satın Alma Geçmişi'),
+                                      trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                      leading: Icon(Icons.info),
+                                      title: Text('Hakkında'),
+                                      trailing: Icon(Icons.arrow_forward_ios),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                      leading: Icon(Icons.help_center_rounded),
+                                      title: Text('Yardım & Destek'),
+                                      trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                        leading: Icon(Icons.sunny_snowing),
+                                        title: Text('Tema Seçimi'),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if (isDarkMode == true) ...[
+                                              Text(
+                                                "Aktif Tema Renginiz: Koyu Tema",
+                                                style: GoogleFonts.ubuntu(
+                                                    color: Colors.black),
+                                              ),
+                                            ] else ...[
+                                              Text(
+                                                "Aktif Tema Renginiz: Aydınlık Tema",
+                                                style: GoogleFonts.ubuntu(
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ],
+                                        ),
+                                        trailing: Switch(
+                                          value: isDarkMode,
+                                          onChanged: (newValue) {
+                                            setState(() {
+                                              if (isDarkMode == true) {
+                                                isDarkMode = newValue;
+                                                _saveTheme(newValue);
+                                                ThemeManager.of(context)
+                                                    .setBrightnessPreference(
+                                                        BrightnessPreference
+                                                            .light);
+                                              } else {
+                                                isDarkMode = newValue;
+                                                _saveTheme(newValue);
+                                                ThemeManager.of(context)
+                                                    .setBrightnessPreference(
+                                                        BrightnessPreference
+                                                            .dark);
+                                              }
+                                            });
+                                          },
+                                          activeTrackColor: Colors.green,
+                                          activeColor: Colors.white,
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                      leading: Icon(Icons.exit_to_app),
+                                      title: Text('Çıkış Yap'),
+                                      trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) => AlertDialog(
+                                                  title: Text("Çıkış Yap"),
+                                                  content: Text(
+                                                      "Çıkış yapmak istediğinize emin misiniz?"),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text("Hayır")),
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          IconSnackBar.show(
+                                                            context: context,
+                                                            label:
+                                                                "Çıkış yapılan hesap: ${user?.email}",
+                                                            snackBarType:
+                                                                SnackBarType
+                                                                    .save,
+                                                          );
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          _authService
+                                                              .signOut();
+                                                          Navigator.of(context)
+                                                              .pushNamedAndRemoveUntil(
+                                                                  'login',
+                                                                  (Route<dynamic>
+                                                                          route) =>
+                                                                      false);
+                                                        },
+                                                        child: Text("Evet"))
+                                                  ],
+                                                ));
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.1,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: ListTile(
+                                      leading:
+                                          Icon(Icons.delete_forever_rounded),
+                                      title: Text('Hesabımı Sil'),
+                                      trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    child: Text("Pati Sever V0.0.1 🐱"),
+                                  )
                                 ],
                               ],
                             ),

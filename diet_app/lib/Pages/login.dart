@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
+import 'package:m_toast/m_toast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +17,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  ShowMToast toast = ShowMToast();
   String greetings() {
     final hour = TimeOfDay.now().hour;
 
@@ -230,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(
                             15.0), //content padding inside button
-                        primary: const Color.fromARGB(255, 8, 197, 119),
+                        primary: Colors.brown[50],
                         shape: StadiumBorder(),
                       ),
                       child: Text('Giriş Yap')),

@@ -27,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.deepOrangeAccent,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(
@@ -55,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   Text("Kayıt Sayfası,",
                       style: GoogleFonts.rubik(
-                          color: Colors.black87,
+                          color: Colors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),
                   SizedBox(
@@ -67,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.ubuntu(
                             fontSize: 15,
-                            color: Colors.grey[600],
+                            color: Colors.grey[200],
                             fontWeight: FontWeight.normal)),
                   ),
                   SizedBox(
@@ -80,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           "Adınız Soyadınız",
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: Colors.grey[200],
                           ),
                         ),
                       )
@@ -93,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.person,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                         ),
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
@@ -113,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           "E-posta",
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: Colors.grey[200],
                           ),
                         ),
                       )
@@ -126,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.email,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                         ),
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
@@ -146,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           "Şifre",
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: Colors.grey[200],
                           ),
                         ),
                       )
@@ -160,14 +161,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.lock,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _visibility
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.grey[400],
+                            color: Colors.grey[200],
                           ),
                           onPressed: () {
                             setState(() {
@@ -193,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           "Şifre Onayı",
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: Colors.grey[200],
                           ),
                         ),
                       )
@@ -210,7 +211,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             _visibility2
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.grey[400],
+                            color: Colors.grey[200],
                           ),
                           onPressed: () {
                             setState(() {
@@ -220,7 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         prefixIcon: Icon(
                           Icons.lock_outline,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                         ),
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
@@ -272,7 +273,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
                               horizontal: 100.0, vertical: 15.0),
-                          primary: Color.fromARGB(255, 2, 187, 79),
+                          primary: const Color.fromARGB(255, 241, 154, 110),
                           shape: StadiumBorder(),
                         ),
                         child: Text('Kayıt Ol')),
@@ -291,7 +292,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             "Kullanım Koşulları ve Gizlilik Politikası Okudum Kabul ediyorum",
                             style: GoogleFonts.ubuntu(
                                 fontSize: 15,
-                                color: Colors.grey[600],
+                                color: Colors.grey[200],
                                 fontWeight: FontWeight.normal,
                                 decoration: TextDecoration.underline),
                           ),

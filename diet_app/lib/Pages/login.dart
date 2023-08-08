@@ -232,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(
                             15.0), //content padding inside button
-                        primary: Colors.brown[50],
+                        primary: const Color.fromARGB(255, 241, 154, 110),
                         shape: StadiumBorder(),
                       ),
                       child: Text('Giriş Yap')),

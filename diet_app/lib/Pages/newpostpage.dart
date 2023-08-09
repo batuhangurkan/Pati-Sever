@@ -350,22 +350,6 @@ class _NewPostPageState extends State<NewPostPage> {
                                     SizedBox(
                                       height: 20,
                                     ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.1,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(50)),
-                                        color: Colors.grey[200],
-                                      ),
-                                      child: ListTile(
-                                        leading:
-                                            Icon(Icons.delete_forever_rounded),
-                                        title: Text('Hesabımı Sil'),
-                                        trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
-                                      ),
-                                    ),
                                   ],
                                   if (user?.emailVerified == true) ...[
                                     SizedBox(
@@ -563,22 +547,6 @@ class _NewPostPageState extends State<NewPostPage> {
                                     SizedBox(
                                       height: 20,
                                     ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.1,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(50)),
-                                        color: Colors.grey[200],
-                                      ),
-                                      child: ListTile(
-                                        leading:
-                                            Icon(Icons.delete_forever_rounded),
-                                        title: Text('Hesabımı Sil'),
-                                        trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
-                                      ),
-                                    ),
                                     SizedBox(
                                       height: 20,
                                     ),
@@ -756,8 +724,9 @@ class _NewPostPageState extends State<NewPostPage> {
               height: MediaQuery.of(context).size.height / 9,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.deepOrangeAccent),
+                  color: Color.fromARGB(255, 218, 113, 81)),
               child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).pushNamed('guide1');
                 },
@@ -768,7 +737,7 @@ class _NewPostPageState extends State<NewPostPage> {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.ubuntu(
                         fontSize: 15,
-                        color: Colors.white70,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       )),
                 ),

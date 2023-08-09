@@ -357,22 +357,6 @@ class _MamaPageState extends State<MamaPage> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.1,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(50)),
-                                      color: Colors.grey[200],
-                                    ),
-                                    child: ListTile(
-                                      leading:
-                                          Icon(Icons.delete_forever_rounded),
-                                      title: Text('Hesabımı Sil'),
-                                      trailing: Icon(Icons.arrow_forward_ios),
-                                      onTap: () {},
-                                    ),
-                                  ),
                                 ],
                                 if (user?.emailVerified == true) ...[
                                   SizedBox(
@@ -565,22 +549,6 @@ class _MamaPageState extends State<MamaPage> {
                                   ),
                                   SizedBox(
                                     height: 20,
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.1,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(50)),
-                                      color: Colors.grey[200],
-                                    ),
-                                    child: ListTile(
-                                      leading:
-                                          Icon(Icons.delete_forever_rounded),
-                                      title: Text('Hesabımı Sil'),
-                                      trailing: Icon(Icons.arrow_forward_ios),
-                                      onTap: () {},
-                                    ),
                                   ),
                                   SizedBox(
                                     height: 20,

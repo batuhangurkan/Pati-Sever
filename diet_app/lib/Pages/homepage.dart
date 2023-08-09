@@ -370,104 +370,6 @@ class _HomePageState extends State<HomePage> {
                                             Radius.circular(50)),
                                         color: Colors.grey[200],
                                       ),
-                                      child: ListTile(
-                                        leading:
-                                            Icon(Icons.delete_forever_rounded),
-                                        title: Text('Hesabımı Sil'),
-                                        trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                AuthService _authService =
-                                                    AuthService();
-                                                return AlertDialog(
-                                                  title: Text("Hesabımı Sil"),
-                                                  content: Text(
-                                                      "Hesabınızı Silmek İstediğinize Emin Misiniz?"),
-                                                  actions: [
-                                                    TextField(
-                                                      controller:
-                                                          _deleteAccountController,
-                                                      decoration: InputDecoration(
-                                                          hintText:
-                                                              "Hesabınızı Silmek İçin 'delete' yazınız."
-                                                                  .tr()
-                                                                  .toString()),
-                                                    ),
-                                                    TextButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text("Hayır")),
-                                                    TextButton(
-                                                        onPressed: () {
-                                                          if (deleteAccount ==
-                                                              _deleteAccountController
-                                                                  .text) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            user?.delete().then(
-                                                                (Function) =>
-                                                                    null);
-                                                            Navigator.pushAndRemoveUntil(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            LoginPage()),
-                                                                (route) =>
-                                                                    false);
-                                                            IconSnackBar.show(
-                                                                context:
-                                                                    context,
-                                                                label:
-                                                                    "Hesabınız başarıyla silindi!",
-                                                                snackBarType:
-                                                                    SnackBarType
-                                                                        .save);
-                                                          } else if (deleteAccount !=
-                                                              _deleteAccountController
-                                                                  .text) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(SnackBar(
-                                                                    duration: Duration(
-                                                                        seconds:
-                                                                            1),
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .red,
-                                                                    content: Text(
-                                                                        "Hesabınızı silmek için delete yazın!"
-                                                                            .tr()
-                                                                            .toString())));
-                                                          } else if (_deleteAccountController
-                                                                  .text ==
-                                                              '') {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(SnackBar(
-                                                                    duration: Duration(
-                                                                        seconds:
-                                                                            1),
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .red,
-                                                                    content: Text(
-                                                                        "Boş geçileemez."
-                                                                            .tr()
-                                                                            .toString())));
-                                                          }
-                                                          ;
-                                                        },
-                                                        child: Text("Evet")),
-                                                  ],
-                                                );
-                                              });
-                                        },
-                                      ),
                                     ),
                                   ],
                                   if (user?.emailVerified == true) ...[
@@ -665,22 +567,6 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     SizedBox(
                                       height: 20,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.1,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(50)),
-                                        color: Colors.grey[200],
-                                      ),
-                                      child: ListTile(
-                                        leading:
-                                            Icon(Icons.delete_forever_rounded),
-                                        title: Text('Hesabımı Sil'),
-                                        trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
-                                      ),
                                     ),
                                     SizedBox(
                                       height: 20,

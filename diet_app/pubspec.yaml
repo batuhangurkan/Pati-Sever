@@ -54,6 +54,9 @@ dependencies:
   circle_progress_bar: ^0.1.2
   flutter_credit_card: ^3.0.7
   m_toast: ^0.2.2
+  firebase_storage: ^11.2.5
+  image_picker: ^1.0.2
+  quickalert: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,16 +1,21 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diet_app/services/auth.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:diet_app/services/auth.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
+import 'dart:io';
+import 'package:quickalert/quickalert.dart';
 
 import '../login.dart';
 
@@ -22,6 +27,36 @@ class AccountSettings extends StatefulWidget {
 }
 
 class _AccountSettingsState extends State<AccountSettings> {
+  void pickUploadImage() async {
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxHeight: 50,
+      maxWidth: 50,
+      imageQuality: 75,
+    );
+
+    Reference ref = FirebaseStorage.instance
+        .ref()
+        .child("Pictures")
+        .child(user!.uid + ".jpg");
+
+    await ref.putFile(File(image!.path));
+    ref.getDownloadURL().then((value) async {
+      print(value);
+      setState(() {
+        imageUrl = value;
+      });
+    });
+
+    await FirebaseFirestore.instance
+        .collection("Person")
+        .doc(user!.uid)
+        .update({
+      "imageUrl": imageUrl,
+    });
+  }
+
+  String imageUrl = "";
   String deleteAccount = "delete";
   TextEditingController _deleteAccountController = TextEditingController();
   AuthService _authService = AuthService();
@@ -38,6 +73,16 @@ class _AccountSettingsState extends State<AccountSettings> {
     super.initState();
   }
 
+  void _getProfilePicture() async {
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection("Person")
+        .doc(user!.uid)
+        .get();
+    setState(() {
+      imageUrl = doc['imageUrl'];
+    });
+  }
+
   void _loadSwitchValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -52,6 +97,7 @@ class _AccountSettingsState extends State<AccountSettings> {
 
   @override
   Widget build(BuildContext context) {
+    var signupDate = user?.metadata.creationTime;
     return Scaffold(
       appBar: AppBar(
         title: Text('Hesap Ayarları',
@@ -119,15 +165,19 @@ class _AccountSettingsState extends State<AccountSettings> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/cat_3382653.png'),
-                            radius: 25,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 60, top: 75),
-                            )),
-                      ),
+                          padding: const EdgeInsets.only(left: 10),
+                          child: GestureDetector(
+                            onTap: () async {
+                              pickUploadImage();
+                            },
+                            child: CircleAvatar(
+                                radius: 40,
+                                backgroundColor: Colors.transparent,
+                                // ignore: unnecessary_null_comparison
+                                child: ClipOval(
+                                    child: Image.asset(
+                                        "assets/images/cat_3382653.png"))),
+                          )),
                       Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -275,117 +325,82 @@ class _AccountSettingsState extends State<AccountSettings> {
                   ),
                   child: Text('Bilgilerini Güncelle')),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
                 decoration: BoxDecoration(
                   color: Colors.brown[50],
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
-              height: MediaQuery.of(context).size.height / 9,
-              width: MediaQuery.of(context).size.width / 1.2,
+                height: MediaQuery.of(context).size.height / 9,
+                width: MediaQuery.of(context).size.width / 1.2,
                 child: Column(
-
                   children: [
-                    SizedBox(height: 5,),
-                    Text("Hesap Oluşturma Tarihi:", style: GoogleFonts.ubuntu(color: Colors.black, fontWeight: FontWeight.bold),),
-                    Text(user!.metadata.creationTime.toString()),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Hesap Oluşturma Tarihi:",
+                      style: GoogleFonts.ubuntu(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    Text(DateFormat.yMMMMEEEEd().format(signupDate!),
+                        style: GoogleFonts.ubuntu(color: Colors.black)),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.7,
                       child: ElevatedButton(
                           onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  AuthService _authService =
-                                  AuthService();
-                                  return AlertDialog(
-                                    title: Text("Hesabımı Sil"),
-                                    content: Text(
-                                        "Hesabınızı Silmek İstediğinize Emin Misiniz?"),
-                                    actions: [
-                                      TextField(
-                                        controller:
-                                        _deleteAccountController,
-                                        decoration: InputDecoration(
-                                            hintText:
-                                            "Hesabınızı Silmek İçin 'delete' yazınız."
-                                                .tr()
-                                                .toString()),
-                                      ),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(
-                                                context);
-                                          },
-                                          child: Text("Hayır")),
-                                      TextButton(
-                                          onPressed: () {
-                                            if (deleteAccount ==
-                                                _deleteAccountController
-                                                    .text) {
-                                              Navigator.pop(
-                                                  context);
-                                              user?.delete().then(
-                                                      (Function) =>
-                                                  null);
-                                              Navigator.pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder:
-                                                          (context) =>
-                                                          LoginPage()),
-                                                      (route) =>
-                                                  false);
-                                              IconSnackBar.show(
-                                                  context:
-                                                  context,
-                                                  label:
-                                                  "Hesabınız başarıyla silindi!",
-                                                  snackBarType:
-                                                  SnackBarType
-                                                      .save);
-                                            } else if (deleteAccount !=
-                                                _deleteAccountController
-                                                    .text) {
-                                              ScaffoldMessenger
-                                                  .of(context)
-                                                  .showSnackBar(SnackBar(
-                                                  duration: Duration(
-                                                      seconds:
-                                                      1),
-                                                  backgroundColor:
-                                                  Colors
-                                                      .red,
-                                                  content: Text(
-                                                      "Hesabınızı silmek için delete yazın!"
-                                                          .tr()
-                                                          .toString())));
-                                            } else if (_deleteAccountController
-                                                .text ==
-                                                '') {
-                                              ScaffoldMessenger
-                                                  .of(context)
-                                                  .showSnackBar(SnackBar(
-                                                  duration: Duration(
-                                                      seconds:
-                                                      1),
-                                                  backgroundColor:
-                                                  Colors
-                                                      .red,
-                                                  content: Text(
-                                                      "Boş geçileemez."
-                                                          .tr()
-                                                          .toString())));
-                                            }
-                                            ;
-                                          },
-                                          child: Text("Evet")),
-                                    ],
-                                  );
-                                });
+                            QuickAlert.show(
+                              customAsset: 'assets/images/cat_3382653.png',
+                              title:
+                                  "Hesabınızı silmek istediğinize emin misiniz ?",
+                              text:
+                                  "Hesabınızı silmek için aşağıdaki kutucuğa 'delete' yazıp onaylayın.",
+                              context: context,
+                              showCancelBtn: false,
+                              type: QuickAlertType.warning,
+                              barrierDismissible: true,
+                              confirmBtnColor: Colors.redAccent,
+                              confirmBtnText: "Hesabımı Sil",
+                              cancelBtnText: "Hayır",
+                              widget: TextFormField(
+                                controller: _emailcontroller,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.mail_outline,
+                                    color: Colors.grey[400],
+                                  ),
+                                  hintText: "E-posta Adresiniz",
+                                  hintStyle: GoogleFonts.ubuntu(
+                                      color: Colors.brown[400]),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    borderSide: BorderSide(color: Colors.grey),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black),
+                                  ),
+                                ),
+                              ),
+                              onConfirmBtnTap: () async {
+                                if (_emailcontroller.text == deleteAccount) {
+                                  AuthService _authService = AuthService();
+                                  user?.delete().then((Function) => null);
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()),
+                                      (route) => false);
+                                } else {}
+                              },
+                              onCancelBtnTap: () {
+                                Navigator.pop(context);
+                              },
+                            );
                           },
                           style: ElevatedButton.styleFrom(
-                           //content padding inside button
+                            //content padding inside button
                             primary: Colors.redAccent,
                             shape: StadiumBorder(),
                           ),

@@ -633,7 +633,9 @@ class _NewPostPageState extends State<NewPostPage> {
                     fontWeight: FontWeight.normal,
                   )),
               trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('guide1');
+              },
             ),
             ListTile(
               leading: CircleAvatar(
@@ -747,6 +749,31 @@ class _NewPostPageState extends State<NewPostPage> {
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {},
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 9,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.deepOrangeAccent),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('guide1');
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                      "Bu rehberi geliştirmek ve patili dostlarımıza daha çok yardımcı olabilmek için bize katılın!",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 15,
+                        color: Colors.white70,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+              ),
+            )
           ],
         ));
   }

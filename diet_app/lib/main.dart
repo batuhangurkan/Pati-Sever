@@ -3,6 +3,7 @@ import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
 import 'package:diet_app/Pages/profilepage.dart';
 import 'package:diet_app/Pages/resetpasswordpage.dart';
+import 'package:diet_app/catsguide/guide1.dart';
 import 'package:diet_app/firebase_options.dart';
 import 'package:diet_app/widgets/bottomnavigationbar.dart';
 import 'package:diet_app/Pages/login.dart';
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
             'newpostpage': (context) => NewPostPage(),
             'profilepage': (context) => ProfilePage(),
             'accountsettings': (context) => AccountSettings(),
+            'guide1': (context) => Guide1(),
           },
         );
       },

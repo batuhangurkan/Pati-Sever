@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diet_app/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,49 @@ class _Guide1State extends State<Guide1> {
         elevation: 0.0,
         backgroundColor: Colors.white,
       ),
-      body: Column(),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  builder: (context, snapshot) {
+                    final data = snapshot.data?.docs;
+                    if (ConnectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    if (!snapshot.hasData) {
+                      return Center(child: Text("Veri Yok"));
+                    }
+                    return ListView.separated(
+                        separatorBuilder: (context, index) => const Divider(),
+                        itemCount: data!.length,
+                        itemBuilder: (context, index) {
+                          final person = data[index].data();
+                          return Card(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                    onTap: () {}, child: Text(person['name'])),
+                                Image.network(person['images']),
+                                Divider(),
+                              ],
+                            ),
+                          ));
+                        });
+                  },
+                  stream: FirebaseFirestore.instance
+                      .collection("Pictures")
+                      .snapshots(),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

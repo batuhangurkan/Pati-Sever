@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:diet_app/services/auth.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import 'package:diet_app/services/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
 
+import '../login.dart';
+
 class AccountSettings extends StatefulWidget {
   const AccountSettings({super.key});
 
@@ -19,6 +22,8 @@ class AccountSettings extends StatefulWidget {
 }
 
 class _AccountSettingsState extends State<AccountSettings> {
+  String deleteAccount = "delete";
+  TextEditingController _deleteAccountController = TextEditingController();
   AuthService _authService = AuthService();
   User? user = FirebaseAuth.instance.currentUser;
   bool isDarkMode = false;
@@ -99,7 +104,7 @@ class _AccountSettingsState extends State<AccountSettings> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 40,
+              height: 20,
             ),
             Center(
               child: Container(
@@ -160,7 +165,7 @@ class _AccountSettingsState extends State<AccountSettings> {
                   )),
             ),
             SizedBox(
-              height: 50,
+              height: 5,
             ),
             Container(
               padding: EdgeInsets.all(15),
@@ -256,7 +261,7 @@ class _AccountSettingsState extends State<AccountSettings> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
@@ -270,6 +275,124 @@ class _AccountSettingsState extends State<AccountSettings> {
                   ),
                   child: Text('Bilgilerini Güncelle')),
             ),
+            SizedBox(height: 20,),
+            Container(
+                decoration: BoxDecoration(
+                  color: Colors.brown[50],
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
+              height: MediaQuery.of(context).size.height / 9,
+              width: MediaQuery.of(context).size.width / 1.2,
+                child: Column(
+
+                  children: [
+                    SizedBox(height: 5,),
+                    Text("Hesap Oluşturma Tarihi:", style: GoogleFonts.ubuntu(color: Colors.black, fontWeight: FontWeight.bold),),
+                    Text(user!.metadata.creationTime.toString()),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.7,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  AuthService _authService =
+                                  AuthService();
+                                  return AlertDialog(
+                                    title: Text("Hesabımı Sil"),
+                                    content: Text(
+                                        "Hesabınızı Silmek İstediğinize Emin Misiniz?"),
+                                    actions: [
+                                      TextField(
+                                        controller:
+                                        _deleteAccountController,
+                                        decoration: InputDecoration(
+                                            hintText:
+                                            "Hesabınızı Silmek İçin 'delete' yazınız."
+                                                .tr()
+                                                .toString()),
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(
+                                                context);
+                                          },
+                                          child: Text("Hayır")),
+                                      TextButton(
+                                          onPressed: () {
+                                            if (deleteAccount ==
+                                                _deleteAccountController
+                                                    .text) {
+                                              Navigator.pop(
+                                                  context);
+                                              user?.delete().then(
+                                                      (Function) =>
+                                                  null);
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder:
+                                                          (context) =>
+                                                          LoginPage()),
+                                                      (route) =>
+                                                  false);
+                                              IconSnackBar.show(
+                                                  context:
+                                                  context,
+                                                  label:
+                                                  "Hesabınız başarıyla silindi!",
+                                                  snackBarType:
+                                                  SnackBarType
+                                                      .save);
+                                            } else if (deleteAccount !=
+                                                _deleteAccountController
+                                                    .text) {
+                                              ScaffoldMessenger
+                                                  .of(context)
+                                                  .showSnackBar(SnackBar(
+                                                  duration: Duration(
+                                                      seconds:
+                                                      1),
+                                                  backgroundColor:
+                                                  Colors
+                                                      .red,
+                                                  content: Text(
+                                                      "Hesabınızı silmek için delete yazın!"
+                                                          .tr()
+                                                          .toString())));
+                                            } else if (_deleteAccountController
+                                                .text ==
+                                                '') {
+                                              ScaffoldMessenger
+                                                  .of(context)
+                                                  .showSnackBar(SnackBar(
+                                                  duration: Duration(
+                                                      seconds:
+                                                      1),
+                                                  backgroundColor:
+                                                  Colors
+                                                      .red,
+                                                  content: Text(
+                                                      "Boş geçileemez."
+                                                          .tr()
+                                                          .toString())));
+                                            }
+                                            ;
+                                          },
+                                          child: Text("Evet")),
+                                    ],
+                                  );
+                                });
+                          },
+                          style: ElevatedButton.styleFrom(
+                           //content padding inside button
+                            primary: Colors.redAccent,
+                            shape: StadiumBorder(),
+                          ),
+                          child: Text('Hesabını Sil')),
+                    ),
+                  ],
+                ))
           ],
         ),
       ),

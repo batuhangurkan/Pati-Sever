@@ -39,6 +39,7 @@ class _Guide1State extends State<Guide1> {
     prefs.setBool('isDarkMode', value);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +98,7 @@ class _Guide1State extends State<Guide1> {
               Expanded(
                 child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                   builder: (context, snapshot) {
+
                     final data = snapshot.data?.docs;
                     if (ConnectionState == ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
@@ -109,18 +111,18 @@ class _Guide1State extends State<Guide1> {
                         itemCount: data!.length,
                         itemBuilder: (context, index) {
                           final person = data[index].data();
-                          return Card(
-                              child: Padding(
+                          return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                              children: [
-                                GestureDetector(
-                                    onTap: () {}, child: Text(person['name'])),
-                                Image.network(person['images']),
-                                Divider(),
-                              ],
+                          children: [
+
+                            GestureDetector(
+                                onTap: () {}, child: Text(person['name'])),
+                            Image.network(person['images']),
+
+                          ],
                             ),
-                          ));
+                          );
                         });
                   },
                   stream: FirebaseFirestore.instance

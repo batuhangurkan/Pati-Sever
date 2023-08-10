@@ -99,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
@@ -132,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
@@ -179,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
@@ -226,7 +226,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),

@@ -32,6 +32,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     AuthService _authService = AuthService();
     ScrollController _scrollController = ScrollController();
     return Scaffold(
+      backgroundColor: Colors.deepOrangeAccent,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
@@ -69,7 +70,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Text('Şifremi Unuttum,',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.rubik(
-                      color: Colors.black87,
+                      color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.bold)),
               SizedBox(
@@ -81,7 +82,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.ubuntu(
                         fontSize: 15,
-                        color: Colors.grey[600],
+                        color: Colors.grey[200],
                         fontWeight: FontWeight.normal)),
               ),
               SizedBox(
@@ -94,7 +95,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     child: Text(
                       "E-posta adresiniz",
                       style: TextStyle(
-                        color: Colors.grey[600],
+                        color: Colors.grey[200],
                       ),
                     ),
                   )
@@ -108,7 +109,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: BorderSide(color: Colors.white),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
@@ -122,7 +123,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Container(
                 width: MediaQuery.of(context).size.width / 1.6,
                 child: ElevatedButton(
-                  child: Text('Şifremi Sıfırla'),
+                  child: Text('Şifremi Sıfırla', style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold),),
                   onPressed: () {
                     if (emailController.text.contains("@") &&
                         emailController.text.isNotEmpty) {
@@ -147,7 +148,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   style: ElevatedButton.styleFrom(
                     padding:
                         EdgeInsets.all(15.0), //content padding inside button
-                    primary: Color.fromARGB(255, 8, 197, 119),
+                    primary: Colors.brown[50],
                     shape: StadiumBorder(),
                   ),
                 ),

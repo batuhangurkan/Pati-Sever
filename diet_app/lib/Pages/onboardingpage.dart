@@ -62,7 +62,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 width: 150,
               ),
               SizedBox(
-                height: 150,
+                height: 100,
               ),
               Container(
                 width: MediaQuery.of(context).size.width / 1.2,
@@ -74,10 +74,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.all(15.0), //content padding inside button
-                      primary: const Color.fromARGB(255, 8, 197, 119),
+                      primary: Colors.brown[50],
                       shape: StadiumBorder(),
                     ),
-                    child: Text('Giriş Yap')),
+                    child: Text('Giriş Yap', style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold
+                    ),)),
               ),
               SizedBox(
                 height: 20,
@@ -92,10 +93,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.all(15.0), //content padding inside button
-                      primary: const Color.fromARGB(255, 241, 154, 110),
+                      primary: Colors.brown[50],
                       shape: StadiumBorder(),
                     ),
-                    child: Text('Kayıt Ol')),
+                    child: Text('Kayıt Ol', style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold),)),
               ),
             ],
           ),

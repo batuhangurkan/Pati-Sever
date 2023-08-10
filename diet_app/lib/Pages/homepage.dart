@@ -603,28 +603,30 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/images/cat_1864640.png",
-                                width: 50,
-                                height: 50,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Günlük Bağışlanan Mama Miktarı:" + "",
-                                style: GoogleFonts.ubuntu(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )),
+                    Expanded(
+                      child: Container(
+                        child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  "assets/images/cat_1864640.png",
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Günlük Bağışlanan Mama Miktarı:" + "",
+                                  style: GoogleFonts.ubuntu(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            )),
+                      ),
                     ),
                     SizedBox(
                       width: 50,

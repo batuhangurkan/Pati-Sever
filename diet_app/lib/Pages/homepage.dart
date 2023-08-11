@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:circle_progress_bar/circle_progress_bar.dart';
@@ -18,21 +19,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   String deleteAccount = "delete";
   TextEditingController _deleteAccountController = TextEditingController();
   User? user = FirebaseAuth.instance.currentUser;
   bool isDarkMode = false;
   bool isNotification = false;
 
-
   @override
   void initState() {
     _loadSwitchValue();
     super.initState();
   }
-
-
 
   void _loadSwitchValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -46,13 +43,14 @@ class _HomePageState extends State<HomePage> {
     prefs.setBool('isDarkMode', value);
   }
 
+  final List<Map> myGridList = List.generate(2, (index) => {});
+
   @override
   Widget build(BuildContext context) {
-
     final User? user = FirebaseAuth.instance.currentUser;
     AuthService _authService = AuthService();
     return Scaffold(
-        backgroundColor: Colors.brown[50],
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('Ana Sayfa',
               style: GoogleFonts.ubuntu(
@@ -590,94 +588,72 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Column(
           children: <Widget>[
-            SizedBox(
-              height: 5,
-            ),
-            Center(
-              child: Container(
-                height: MediaQuery.of(context).size.height / 5.0,
-                width: MediaQuery.of(context).size.width / 1.1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.deepOrangeAccent,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "assets/images/cat_1864640.png",
-                                  width: 50,
-                                  height: 50,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-
-                                Text(
-                                  "Günlük Bağışlanan Mama Miktarı:" + "",
-                                  style: GoogleFonts.ubuntu(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            )),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircleProgressBar(
-                        foregroundColor: Colors.orange,
-                        value: 1,
-                        child: AnimatedCount(
-                          count: 1,
-                          unit: '%',
-                          duration: Duration(seconds: 2),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Hedef: 100 kg",
-                        style: GoogleFonts.ubuntu(
-                          color: Colors.black,
-                          fontSize: 15,
-                        )),
-
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 85,
-            ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2,
-              color: Colors.deepOrangeAccent,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Center(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: MediaQuery.of(context).size.height / 4.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Colors.white,
-                      ),
-                      child: Image.asset(
-                        "assets/images/test1.png",
-                      ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(
+                      children: [
+                        Text("Merhaba, Pati Sever!",
+                            style: GoogleFonts.ubuntu(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height / 3.5,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              color: Colors.deepOrange),
+                          child: Container(
+                              //Yukarı kısım için yapılacaklar
+                              )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(
+                      children: [
+                        Text("Pati Sever Plan Alanı!",
+                            style: GoogleFonts.ubuntu(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          color: Colors.deepOrange),
+                    ),
+                  ),
                 ],
               ),
             )

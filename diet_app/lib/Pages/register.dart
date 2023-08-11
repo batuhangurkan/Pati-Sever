@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diet_app/Pages/emailverificationpage.dart';
 import 'package:diet_app/Pages/login.dart';
+import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +18,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  User? user = FirebaseAuth.instance.currentUser;
   final currentUser = FirebaseAuth.instance;
   bool _visibility = false;
   bool _visibility2 = false;
@@ -25,6 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _passwordAgainController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
   AuthService _authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -246,13 +250,16 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: MediaQuery.of(context).size.width / 1.6,
                     child: ElevatedButton(
                         onPressed: () async {
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-                          await prefs.setString('username', _usernameController.text);
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString(
+                              'email', _usernameController.text);
                           if (_emailController.text.isNotEmpty &&
                               _passwordController.text.isNotEmpty &&
                               _passwordAgainController.text.isNotEmpty &&
                               _usernameController.text.isNotEmpty) {
                             setState(() {
+                              user?.sendEmailVerification();
                               _authService
                                   .createPerson(
                                       _emailController.text,
@@ -264,10 +271,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   context: context,
                                   snackBarType: SnackBarType.save,
                                   label: 'Başarılı bir şekilde kayıt oldunuz!');
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  'emailverificationpage',
+                                  (Route<dynamic> route) => false);
                             });
                           } else {
                             IconSnackBar.show(
@@ -283,7 +289,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           primary: Colors.brown[50],
                           shape: StadiumBorder(),
                         ),
-                        child: Text('Kayıt Ol', style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold),)),
+                        child: Text(
+                          'Kayıt Ol',
+                          style: GoogleFonts.ubuntu(
+                              color: Colors.deepOrangeAccent,
+                              fontWeight: FontWeight.bold),
+                        )),
                   ),
                   InkWell(
                     onTap: () {

@@ -11,6 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Pages/emailverificationpage.dart';
 import 'Pages/loading.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'Pages/onboardingpage.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
           theme: theme,
           home: OnboardingPage(),
           initialRoute:
-           initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
+              initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
           routes: {
             'loading': (context) => LoadingPage(),
             'onboard': (context) => OnboardingPage(),
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
             'newpostpage': (context) => NewPostPage(),
             'profilepage': (context) => ProfilePage(),
             'accountsettings': (context) => AccountSettings(),
+            'emailverificationpage': (context) => EmailVerificationPage(),
             'guide1': (context) => Guide1(),
           },
         );

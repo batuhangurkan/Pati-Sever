@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:m_toast/m_toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +18,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+
   ShowMToast toast = ShowMToast();
   String greetings() {
     final hour = TimeOfDay.now().hour;
@@ -168,6 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+
                 InkWell(
                   child: Padding(
                       padding: EdgeInsets.fromLTRB(250, 0, 0, 25),
@@ -189,13 +193,17 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   width: MediaQuery.of(context).size.width / 1.6,
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('email', _emailcontroller.text);
+                        await prefs.setString('password', _passwordcontroller.text);
                         setState(() {
                           Future.delayed(Duration(seconds: 2), () {
                             _authService
                                 .signIn(_emailcontroller.text,
-                                    _passwordcontroller.text)
+                                _passwordcontroller.text)
                                 .then((value) {
+
                               IconSnackBar.show(
                                   context: context,
                                   label: "Giriş yapılan hesap:" +
@@ -204,10 +212,11 @@ class _LoginPageState extends State<LoginPage> {
                                   duration: Duration(seconds: 3));
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   '/bottomnavigationbar',
-                                  (Route<dynamic> route) => false);
+                                      (Route<dynamic> route) => false);
                             });
+
                           });
-                          if (_emailcontroller.text == '' &&
+                         if (_emailcontroller.text == '' &&
                               _passwordcontroller.text == '') {
                             IconSnackBar.show(
                                 context: context,

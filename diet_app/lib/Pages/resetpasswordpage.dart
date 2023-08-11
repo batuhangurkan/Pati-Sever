@@ -37,7 +37,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -77,16 +77,19 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 height: 10,
               ),
               Center(
-                child: Text(
-                    "Üzülmenize hiç gerek yok! Şifrenizi yenilemek çok kolay. E-posta adresinizi girin ve şifrenizi yenileyin.",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.ubuntu(
-                        fontSize: 15,
-                        color: Colors.grey[200],
-                        fontWeight: FontWeight.normal)),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                      "Üzülmenize hiç gerek yok! Şifrenizi yenilemek çok kolay. E-posta adresinizi girin ve şifrenizi yenileyin.",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.ubuntu(
+                          fontSize: 15,
+                          color: Colors.grey[200],
+                          fontWeight: FontWeight.normal)),
+                ),
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               Row(
                 children: [
@@ -104,15 +107,18 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Container(
                 padding: EdgeInsets.all(15),
                 child: TextFormField(
+
+                  style: TextStyle(color: Colors.white),
                   controller: emailController,
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email, color: Colors.white,),
                     hintStyle: GoogleFonts.ubuntu(color: Colors.grey[400]),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.white),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: Colors.white),
                     ),
                   ),
                 ),

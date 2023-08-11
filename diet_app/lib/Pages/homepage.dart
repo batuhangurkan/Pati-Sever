@@ -18,17 +18,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   String deleteAccount = "delete";
   TextEditingController _deleteAccountController = TextEditingController();
   User? user = FirebaseAuth.instance.currentUser;
   bool isDarkMode = false;
   bool isNotification = false;
 
+
   @override
   void initState() {
     _loadSwitchValue();
     super.initState();
   }
+
+
 
   void _loadSwitchValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -44,10 +48,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Future updateDisplayName(String newDisplayName) async {
-      var user = await FirebaseAuth.instance.currentUser;
-      user!.updateDisplayName(newDisplayName);
-    }
 
     final User? user = FirebaseAuth.instance.currentUser;
     AuthService _authService = AuthService();
@@ -617,6 +617,7 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(
                                   width: 10,
                                 ),
+
                                 Text(
                                   "Günlük Bağışlanan Mama Miktarı:" + "",
                                   style: GoogleFonts.ubuntu(
@@ -649,6 +650,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black,
                           fontSize: 15,
                         )),
+
                   ],
                 ),
               ),

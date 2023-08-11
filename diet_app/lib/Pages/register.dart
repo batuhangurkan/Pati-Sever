@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -32,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_outlined,
-              color: Colors.black,
+              color: Colors.white,
             ),
             onPressed: () {
               Navigator.push(context,
@@ -90,6 +91,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: _usernameController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
@@ -102,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                     ),
@@ -123,6 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: _emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
@@ -135,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                     ),
@@ -156,6 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       obscureText: _visibility,
                       controller: _passwordController,
                       decoration: InputDecoration(
@@ -182,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                     ),
@@ -203,6 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     padding: EdgeInsets.all(15),
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       obscureText: _visibility2,
                       controller: _passwordAgainController,
                       decoration: InputDecoration(
@@ -229,7 +234,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                     ),
@@ -240,7 +245,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     width: MediaQuery.of(context).size.width / 1.6,
                     child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          await prefs.setString('username', _usernameController.text);
                           if (_emailController.text.isNotEmpty &&
                               _passwordController.text.isNotEmpty &&
                               _passwordAgainController.text.isNotEmpty &&
@@ -273,10 +280,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
                               horizontal: 100.0, vertical: 15.0),
-                          primary: const Color.fromARGB(255, 241, 154, 110),
+                          primary: Colors.brown[50],
                           shape: StadiumBorder(),
                         ),
-                        child: Text('Kayıt Ol')),
+                        child: Text('Kayıt Ol', style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold),)),
                   ),
                   InkWell(
                     onTap: () {

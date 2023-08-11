@@ -109,8 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.all(15),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _emailcontroller,
                     decoration: InputDecoration(
+
                       prefixIcon: Icon(
                         Icons.email,
                         color: Colors.grey[200],
@@ -142,6 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.all(15),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: _passwordcontroller,
                     obscureText: _visibility,
                     decoration: InputDecoration(
@@ -219,6 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                          if (_emailcontroller.text == '' &&
                               _passwordcontroller.text == '') {
                             IconSnackBar.show(
+
                                 context: context,
                                 label: "E-Posta veya Şifre boş bırakılamaz!",
                                 snackBarType: SnackBarType.fail,

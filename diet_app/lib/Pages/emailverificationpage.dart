@@ -68,10 +68,6 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                       await SharedPreferences.getInstance();
                   await prefs.getString('email' ?? '');
                   user!.sendEmailVerification();
-                  setState(() {
-                    if (user?.emailVerified == true)
-                      Navigator.pushNamed(context, '/bottomnavigationbar');
-                  });
                 },
                 child: Text("E-maili Tekrar Gönder"),
                 style: ElevatedButton.styleFrom(

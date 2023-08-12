@@ -152,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                       suffixIcon: IconButton(
                         icon: Icon(
                           _visibility ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                         onPressed: () {
                           setState(() {

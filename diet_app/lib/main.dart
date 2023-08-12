@@ -66,8 +66,8 @@ class MyApp extends StatelessWidget {
           title: 'Pati Sever',
           theme: theme,
           home: OnboardingPage(),
-          //initialRoute:
-             // initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
+          initialRoute:
+              initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
           routes: {
             'loading': (context) => LoadingPage(),
             'onboard': (context) => OnboardingPage(),

@@ -616,25 +616,80 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 3.5,
-                            decoration: BoxDecoration(
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 15,
+                          ),
+                          CircleAvatar(
+                            backgroundImage: AssetImage("assets/images/cat_3382653.png"),
+                            backgroundColor: Colors.white,
+                            radius: 25,
 
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                color: Colors.deepOrangeAccent),
-                            child: Container(
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 10,),
-                                    Center(child: Text("Patili Dostunu Yakından Tanı", style: GoogleFonts.ubuntu(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),)),
-                                  ],
-                                ),
-                                )),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          CircleAvatar(
+                            radius: 25,
+                            child: Text("Selam"),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(

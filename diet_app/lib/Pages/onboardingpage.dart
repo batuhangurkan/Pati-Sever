@@ -21,7 +21,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 150,
+                height: 120,
               ),
               Container(
                 child: Center(
@@ -58,8 +58,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
               Image.asset(
                 "assets/images/birman-cat.png",
-                height: 150,
-                width: 150,
+                height: 120,
+                width: 120,
               ),
               SizedBox(
                 height: 100,

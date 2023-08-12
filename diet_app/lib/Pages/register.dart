@@ -250,23 +250,25 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: MediaQuery.of(context).size.width / 1.6,
                     child: ElevatedButton(
                         onPressed: () async {
-                          user!.sendEmailVerification();
+                          user?.sendEmailVerification();
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString(
                               'email', _usernameController.text);
+
                           if (_emailController.text.isNotEmpty &&
                               _passwordController.text.isNotEmpty &&
                               _passwordAgainController.text.isNotEmpty &&
                               _usernameController.text.isNotEmpty) {
                             setState(() {
+
                               _authService
                                   .createPerson(
                                       _emailController.text,
                                       _passwordController.text,
                                       _usernameController.text)
                                   .then((value) {});
-                              user!.sendEmailVerification();
+
                               IconSnackBar.show(
                                   duration: Duration(seconds: 3),
                                   context: context,

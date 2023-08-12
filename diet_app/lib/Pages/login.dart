@@ -53,13 +53,13 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 120,
+                  height: 80,
                 ),
                 Center(
                   child: Image.asset(
                     "assets/images/birman-cat.png",
-                    height: 150,
-                    width: 150,
+                    height: 100,
+                    width: 100,
                   ),
                 ),
                 SizedBox(
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.normal)),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Row(
                   children: [
@@ -252,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                       )),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 InkWell(
                   onTap: () {

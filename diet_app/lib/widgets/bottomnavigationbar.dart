@@ -39,7 +39,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           /// Home
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.cat),
-            title: Text(""),
+            title: Text("Anasayfa"),
+
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
@@ -47,7 +48,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           /// Likes
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.moneyCheckDollar),
-            title: Text(""),
+            title: Text("Pati"),
+
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
@@ -55,7 +57,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           /// Search
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.paw),
-            title: Text(""),
+            title: Text("Pati"),
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),

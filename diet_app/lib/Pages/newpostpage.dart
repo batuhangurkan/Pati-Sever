@@ -741,6 +741,7 @@ class _NewPostPageState extends State<NewPostPage> {
                         fontWeight: FontWeight.bold,
                       )),
                 ),
+
               ),
             )
           ],

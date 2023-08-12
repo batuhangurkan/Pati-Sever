@@ -57,6 +57,8 @@ dependencies:
   firebase_storage: ^11.2.5
   image_picker: ^1.0.2
   quickalert: ^1.0.1
+  hexcolor: ^3.0.1
+
 
 dev_dependencies:
   flutter_test:

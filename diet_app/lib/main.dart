@@ -29,11 +29,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await EasyLocalization.ensureInitialized();
-  await Permission.notification.isDenied.then((value) {
-    if (value) {
-      Permission.notification.request();
-    }
-  });
+  //Bildirim izni isteme kısmı!
+  //await Permission.notification.isDenied.then((value) {
+    //if (value) {
+      //Permission.notification.request();
+    //}
+  //});
   SharedPreferences preferences = await SharedPreferences.getInstance();
   initScreen = await preferences.getInt('initScreen');
   await preferences.setInt('initScreen', 1);
@@ -65,8 +66,8 @@ class MyApp extends StatelessWidget {
           title: 'Pati Sever',
           theme: theme,
           home: OnboardingPage(),
-          initialRoute:
-              initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
+          //initialRoute:
+             // initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
           routes: {
             'loading': (context) => LoadingPage(),
             'onboard': (context) => OnboardingPage(),

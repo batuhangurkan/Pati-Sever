@@ -13,6 +13,7 @@ class EmailVerificationPage extends StatefulWidget {
 class _EmailVerificationPageState extends State<EmailVerificationPage> {
   @override
   Widget build(BuildContext context) {
+
     User? user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       backgroundColor: Colors.deepOrangeAccent,

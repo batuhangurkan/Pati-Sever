@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:m_toast/m_toast.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -204,6 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                                 .signIn(_emailcontroller.text,
                                     _passwordcontroller.text)
                                 .then((value) {
+
                               IconSnackBar.show(
                                   context: context,
                                   label: "Giriş yapılan hesap:" +

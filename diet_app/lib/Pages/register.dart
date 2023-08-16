@@ -29,6 +29,16 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _usernameController = TextEditingController();
   AuthService _authService = AuthService();
 
+
+
+  Future sendVerification() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    SharedPreferences prefs =
+        await SharedPreferences.getInstance();
+    await prefs.getString('email' ?? '');
+    user!.sendEmailVerification();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -250,12 +260,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: MediaQuery.of(context).size.width / 1.6,
                     child: ElevatedButton(
                         onPressed: () async {
-                          user?.sendEmailVerification();
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString(
-                              'email', _usernameController.text);
 
+
+                            SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                            await prefs.setString(
+                                'email', _emailController.text);
                           if (_emailController.text.isNotEmpty &&
                               _passwordController.text.isNotEmpty &&
                               _passwordAgainController.text.isNotEmpty &&
@@ -267,16 +277,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                       _emailController.text,
                                       _passwordController.text,
                                       _usernameController.text)
-                                  .then((value) {});
-
+                                  .then((value) {
+                                sendVerification();
+                                Navigator.of(context).pushNamedAndRemoveUntil('emailverificationpage', (route) => false);
+                              });
                               IconSnackBar.show(
                                   duration: Duration(seconds: 3),
                                   context: context,
-                                  snackBarType: SnackBarType.save,
-                                  label: 'Başarılı bir şekilde kayıt oldunuz!');
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  'emailverificationpage',
-                                  (Route<dynamic> route) => false);
+                                  snackBarType: SnackBarType.save, label: 'Başarılı bir şekilde kayıt oldunuz!');
+
                             });
                           } else {
                             IconSnackBar.show(

@@ -610,23 +610,34 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.20),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('categories');
+                            },
+                            child: Text("Tümünü Gör", style: GoogleFonts.ubuntu(color: Colors.black, fontWeight: FontWeight.bold),),
+                          )
                         ],
                       ),
                     ),
+
                     SizedBox(
                       height: 15,
                     ),
+
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+
                           SizedBox(
                             width: 15,
                           ),
+
                           CircleAvatar(
-                            backgroundImage: AssetImage("assets/images/cat_3382653.png"),
-                            backgroundColor: Colors.white,
+
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
 
                           ),
@@ -634,57 +645,65 @@ class _HomePageState extends State<HomePage> {
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
                           ),
                           CircleAvatar(
+                            backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text("Selam"),
+                            child: Text(""),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -693,8 +712,44 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 30,
                     ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: MediaQuery.of(context).size.height / 6.7,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                color: Colors.deepOrangeAccent),
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () {
+                                Navigator.of(context).pushNamed('mamabagıs');
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(
+                                    "Patili dostlarımıza yardım etmek onlarında dışarıdaki yaşamlarına destek olmak istemez misiniz? Daha detaylı bilgi için tıklayınız!",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.ubuntu(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+
+                            ),
+                          )
+                        ],
+                      ),
+
+
+                    ),
+
+                    SizedBox(height: 35,),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Row(
@@ -715,8 +770,8 @@ class _HomePageState extends State<HomePage> {
                       width: MediaQuery.of(context).size.width * 1,
                       //height: MediaQuery.of(context).size.height * 0.95,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: HexColor("#ffebd7"),),
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          color: Colors.deepOrangeAccent,),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -725,28 +780,82 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               //SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                              Container(
-                                height: MediaQuery.of(context).size.height * 0.14,
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                margin: const EdgeInsets.all(15.0),
-                                padding: const EdgeInsets.all(3.0),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet<void>(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        height: 200.0,
+                                        color: Colors.white,
+                                        child: Center(
+                                          child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: [
+                                                    SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
+                                                    CircleAvatar(
+                                                      backgroundColor: Colors.deepOrangeAccent,
+                                                      radius: 50,
+                                                      child: FaIcon(FontAwesomeIcons.cat, color: Colors.white, size: 30,),
+                                                    ),
 
-                                decoration: BoxDecoration(
-                                 color: Colors.white,
-                                  borderRadius: BorderRadius.circular(25),
+
+
+                                                    SizedBox(width: MediaQuery.of(context).size.width * 0.20,),
+                                                    CircleAvatar(
+                                                      radius: 50,
+                                                      backgroundColor: Colors.deepOrangeAccent,
+                                                      child: FaIcon(FontAwesomeIcons.dog, color: Colors.white, size: 30,),
+                                                    )
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: <Widget> [
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(width: MediaQuery.of(context).size.width * 0.23),
+                                                        Text("Kedi", style: GoogleFonts.ubuntu(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold,
+                                                        ),),
+                                                        SizedBox(width: MediaQuery.of(context).size.width * 0.37,),
+                                                        Text("Köpek", style: GoogleFonts.ubuntu(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold
+                                                        ),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+
+                                              ]),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height * 0.14,
+                                  width: MediaQuery.of(context).size.width * 0.35,
+                                  margin: const EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(3.0),
+
+                                  decoration: BoxDecoration(
+                                   color: Colors.white,
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  child: Center(child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent, size: 50,),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text("Patini Tanı", style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold),)
+                                    ],
+                                  ))
+
                                 ),
-                                child: Center(child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-
-                                    FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent, size: 50,),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text("Patini Tanı", style: GoogleFonts.ubuntu(color: Colors.deepOrangeAccent, fontWeight: FontWeight.bold),)
-                                  ],
-                                ))
-
                               ),
                              // SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
                               Container(
@@ -782,7 +891,7 @@ class _HomePageState extends State<HomePage> {
                               //SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
                               Container(
                                 height: MediaQuery.of(context).size.height * 0.14,
-                                width: MediaQuery.of(context).size.width * 0.24,
+                                width: MediaQuery.of(context).size.width * 0.25,
                                 margin: const EdgeInsets.all(15.0),
                                 padding: const EdgeInsets.all(3.0),
                                 decoration: BoxDecoration(
@@ -804,7 +913,7 @@ class _HomePageState extends State<HomePage> {
                               // SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
                               Container(
                                 height: MediaQuery.of(context).size.height * 0.14,
-                                width: MediaQuery.of(context).size.width * 0.24,
+                                width: MediaQuery.of(context).size.width * 0.25,
                                 margin: const EdgeInsets.all(15.0),
                                 padding: const EdgeInsets.all(3.0),
                                 decoration: BoxDecoration(
@@ -825,7 +934,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Container(
                                 height: MediaQuery.of(context).size.height * 0.14,
-                                width: MediaQuery.of(context).size.width * 0.24,
+                                width: MediaQuery.of(context).size.width * 0.25,
                                 margin: const EdgeInsets.all(15.0),
                                 padding: const EdgeInsets.all(3.0),
                                 decoration: BoxDecoration(

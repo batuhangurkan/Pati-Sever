@@ -1,4 +1,5 @@
 import 'package:diet_app/Pages/accountsettings/accountsettings.dart';
+import 'package:diet_app/Pages/categories/categories.dart';
 import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
 import 'package:diet_app/Pages/profilepage.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           title: 'Pati Sever',
           theme: theme,
-          home: OnboardingPage(),
+          home: BottomNavigationBarPage(),
           initialRoute:
               initScreen == 0 || initScreen == null ? 'onboard' : 'loading',
           routes: {
@@ -74,13 +75,14 @@ class MyApp extends StatelessWidget {
             'login': (context) => LoginPage(),
             'register': (context) => RegisterPage(),
             '/bottomnavigationbar': (context) => BottomNavigationBarPage(),
-            'mama': (context) => MamaPage(),
+            'mamabagıs': (context) => MamaPage(),
             'resetpasswordpage': (context) => ResetPasswordPage(),
             'newpostpage': (context) => NewPostPage(),
             'profilepage': (context) => ProfilePage(),
             'accountsettings': (context) => AccountSettings(),
             'emailverificationpage': (context) => EmailVerificationPage(),
             'guide1': (context) => Guide1(),
+            'categories': (context) => CategoriesPage(),
           },
         );
       },

@@ -148,7 +148,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         duration: Duration(seconds: 3),
                       );
                     } else {
-                      return null;
+                      Navigator.pop(context);
                     }
                   },
                   style: ElevatedButton.styleFrom(

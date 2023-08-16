@@ -23,6 +23,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
     HomePage(),
     MamaPage(),
     NewPostPage(),
+    NewPostPage(),
   ];
 
   @override
@@ -39,7 +40,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           /// Home
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.cat),
-            title: Text("Anasayfa"),
+            title: Text("Pati Anasayfa"),
 
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
@@ -47,7 +48,15 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
 
           /// Likes
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.moneyCheckDollar),
+            icon: FaIcon(FontAwesomeIcons.creditCard),
+            title: Text("Pati Destek"),
+
+            unselectedColor: Colors.deepOrangeAccent,
+            selectedColor: Colors.deepOrangeAccent,
+          ),
+
+          SalomonBottomBarItem(
+            icon: FaIcon(FontAwesomeIcons.paw),
             title: Text("Pati"),
 
             unselectedColor: Colors.deepOrangeAccent,
@@ -56,11 +65,13 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
 
           /// Search
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.paw),
-            title: Text("Pati"),
+            icon: FaIcon(FontAwesomeIcons.bookBookmark),
+            title: Text("Pati Rehber"),
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
+
+
 
           /// Profile
         ],

@@ -1,10 +1,10 @@
 import 'package:diet_app/Pages/accountsettings/accountsettings.dart';
-import 'package:diet_app/Pages/categories/categories.dart';
+import 'package:diet_app/categories/categories.dart';
 import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
 import 'package:diet_app/Pages/profilepage.dart';
 import 'package:diet_app/Pages/resetpasswordpage.dart';
-import 'package:diet_app/catsguide/guide1.dart';
+import 'package:diet_app/Pages/catsguide/guide1.dart';
 import 'package:diet_app/firebase_options.dart';
 import 'package:diet_app/widgets/bottomnavigationbar.dart';
 import 'package:diet_app/Pages/login.dart';
@@ -21,6 +21,7 @@ import 'Pages/register.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:theme_manager/change_theme_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Pages/patinews.dart';
 
 int? initScreen;
 
@@ -32,9 +33,9 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   //Bildirim izni isteme kısmı!
   //await Permission.notification.isDenied.then((value) {
-    //if (value) {
-      //Permission.notification.request();
-    //}
+  //if (value) {
+  //Permission.notification.request();
+  //}
   //});
   SharedPreferences preferences = await SharedPreferences.getInstance();
   initScreen = await preferences.getInt('initScreen');
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
             'emailverificationpage': (context) => EmailVerificationPage(),
             'guide1': (context) => Guide1(),
             'categories': (context) => CategoriesPage(),
+            'patinews': (context) => PatiNews(),
           },
         );
       },

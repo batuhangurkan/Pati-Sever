@@ -3,6 +3,7 @@ import 'package:diet_app/Pages/homepage.dart';
 import 'package:diet_app/Pages/login.dart';
 import 'package:diet_app/Pages/mama.dart';
 import 'package:diet_app/Pages/newpostpage.dart';
+import 'package:diet_app/Pages/patinews.dart';
 import 'package:diet_app/Pages/profilepage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   final screens = [
     HomePage(),
     MamaPage(),
-    NewPostPage(),
+    PatiNews(),
     NewPostPage(),
   ];
 
@@ -41,7 +42,6 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.cat),
             title: Text("Pati Anasayfa"),
-
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
@@ -50,15 +50,13 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           SalomonBottomBarItem(
             icon: FaIcon(FontAwesomeIcons.creditCard),
             title: Text("Pati Destek"),
-
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
 
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.paw),
-            title: Text("Pati"),
-
+            icon: FaIcon(FontAwesomeIcons.newspaper),
+            title: Text("Pati Haberler"),
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
@@ -70,8 +68,6 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),
-
-
 
           /// Profile
         ],

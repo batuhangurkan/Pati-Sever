@@ -38,8 +38,6 @@ class _Guide1State extends State<Guide1> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isDarkMode', value);
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +102,7 @@ class _Guide1State extends State<Guide1> {
                       return Center(child: CircularProgressIndicator());
                     }
                     if (!snapshot.hasData) {
-                      return Center(child: Text("Veri Yok"));
+                      return Center(child: CircularProgressIndicator());
                     }
                     return ListView.separated(
                         separatorBuilder: (context, index) => const Divider(),
@@ -115,7 +113,6 @@ class _Guide1State extends State<Guide1> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                           children: [
-
                             GestureDetector(
                                 onTap: () {}, child: Text(person['name'])),
                             Image.network(person['images']),

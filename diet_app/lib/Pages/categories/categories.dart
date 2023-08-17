@@ -92,6 +92,102 @@ class _CategoriesPageState extends State<CategoriesPage> {
         elevation: 0.0,
         backgroundColor: Colors.white,
       ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 20),
+            child: Row(
+              children: [
+                Text("Beyaz Kedi Cinsleri",
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(height: 10,),
+
+
+              ],
+            ),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Kıbrıs Kedisi"),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Kıbrıs Kedisi"),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 20),
+            child: Row(
+              children: [
+                Text("Büyük Kedi Cinsleri",
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(height: 10,),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Köpek"),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Kıbrıs Kedisi"),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 20),
+            child: Row(
+              children: [
+                Text("Büyümeyen Kedi Cinsleri",
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(height: 10,),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Köpek"),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Kıbrıs Kedisi"),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 20),
+            child: Row(
+              children: [
+                Text("Çocuk Dostu Kediler",
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(height: 10,),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+    child: Image.asset("assets/images/cat_3382653.png"),
+    ),
+            title: Text("Köpek"),
+          ),
+          ListTile(
+            leading: FaIcon(FontAwesomeIcons.paw, color: Colors.deepOrangeAccent,),
+            title: Text("Kıbrıs Kedisi"),
+          ),
+        ],
+      ),
     );
   }
 }

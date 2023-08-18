@@ -202,7 +202,10 @@ class _HomePageState extends State<HomePage> {
                                         leading: Icon(Icons.history),
                                         title: Text('Satın Alma Geçmişi'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('purchasehistory');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -220,6 +223,10 @@ class _HomePageState extends State<HomePage> {
                                         leading: Icon(Icons.info),
                                         title: Text('Hakkında'),
                                         trailing: Icon(Icons.arrow_forward_ios),
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('appabout');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -238,7 +245,10 @@ class _HomePageState extends State<HomePage> {
                                             Icon(Icons.help_center_rounded),
                                         title: Text('Yardım & Destek'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('helpsupport');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -409,7 +419,10 @@ class _HomePageState extends State<HomePage> {
                                         leading: Icon(Icons.history),
                                         title: Text('Satın Alma Geçmişi'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('purchasehistory');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -427,6 +440,10 @@ class _HomePageState extends State<HomePage> {
                                         leading: Icon(Icons.info),
                                         title: Text('Hakkında'),
                                         trailing: Icon(Icons.arrow_forward_ios),
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('appabout');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -445,7 +462,10 @@ class _HomePageState extends State<HomePage> {
                                             Icon(Icons.help_center_rounded),
                                         title: Text('Yardım & Destek'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('helpsupport');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -729,42 +749,6 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       color: Colors.deepOrangeAccent),
-                                  child: GestureDetector(
-                                    behavior: HitTestBehavior.translucent,
-                                    onTap: () {
-                                      Navigator.of(context)
-                                          .pushNamed('mamabagıs');
-                                    },
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                          "Patili dostlarımıza yardım etmek onlarında dışarıdaki yaşamlarına destek olmak istemez misiniz? Daha detaylı bilgi için tıklayınız!",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 15,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.10),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 1,
-                            height: MediaQuery.of(context).size.height * 0.15,
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 6.7,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      color: Colors.green),
                                   child: GestureDetector(
                                     behavior: HitTestBehavior.translucent,
                                     onTap: () {

@@ -114,7 +114,9 @@ class _ProfilePageState extends State<ProfilePage> {
               leading: Icon(Icons.history),
               title: Text('Satın Alma Geçmişi'),
               trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('purchasehistory');
+              },
             ),
           ),
           SizedBox(
@@ -145,7 +147,9 @@ class _ProfilePageState extends State<ProfilePage> {
               leading: Icon(Icons.help_center_rounded),
               title: Text('Yardım & Destek'),
               trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('helpsupport');
+              },
             ),
           ),
           SizedBox(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
@@ -202,7 +203,10 @@ class _MamaPageState extends State<MamaPage> {
                                       leading: Icon(Icons.history),
                                       title: Text('Satın Alma Geçmişi'),
                                       trailing: Icon(Icons.arrow_forward_ios),
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('purchasehistory');
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -220,6 +224,10 @@ class _MamaPageState extends State<MamaPage> {
                                       leading: Icon(Icons.info),
                                       title: Text('Hakkında'),
                                       trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('appabout');
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -237,7 +245,10 @@ class _MamaPageState extends State<MamaPage> {
                                       leading: Icon(Icons.help_center_rounded),
                                       title: Text('Yardım & Destek'),
                                       trailing: Icon(Icons.arrow_forward_ios),
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('helpsupport');
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -395,7 +406,10 @@ class _MamaPageState extends State<MamaPage> {
                                       leading: Icon(Icons.history),
                                       title: Text('Satın Alma Geçmişi'),
                                       trailing: Icon(Icons.arrow_forward_ios),
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('purchasehistory');
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -413,6 +427,10 @@ class _MamaPageState extends State<MamaPage> {
                                       leading: Icon(Icons.info),
                                       title: Text('Hakkında'),
                                       trailing: Icon(Icons.arrow_forward_ios),
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('appabout');
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -430,7 +448,10 @@ class _MamaPageState extends State<MamaPage> {
                                       leading: Icon(Icons.help_center_rounded),
                                       title: Text('Yardım & Destek'),
                                       trailing: Icon(Icons.arrow_forward_ios),
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('helpsupport');
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -570,42 +591,55 @@ class _MamaPageState extends State<MamaPage> {
         elevation: 0.0,
         backgroundColor: Colors.white,
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width / 1.0,
-            child: CreditCardWidget(
-              cardType: CardType.mastercard,
-              backgroundImage: "assets/images/cat_3382653.png",
-              bankName: "Ziraat Bankası",
-              isChipVisible: true,
-              cardNumber: "1234 5678 9012 3456",
-              expiryDate: "12/24",
-              cardHolderName: "Batuhan Gürkan",
-              cvvCode: "123",
+      body: Container(
+        height: MediaQuery.of(context).size.height / 1.0,
+        width: MediaQuery.of(context).size.width / 1.0,
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width / 1.0,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+                "Patili Dostlarımıza Mama Alıyoruz!. Yapmış olduğunuz her bağış patili dostlarımıza mama olarak gidecektir. Dostlarımızın yaşam kalitesini arttırmak için sizlerde bağış yapabilirsiniz.",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.ubuntu(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                )),
+            SizedBox(
+              height: 20,
+            ),
+            Text("Bağış Yapmak İçin Kart Bilgilerinizi Giriniz",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.ubuntu(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                )),
+            SizedBox(
+              height: 20,
+            ),
+            CreditCardWidget(
+              cardNumber: cardNumber,
+              expiryDate: expiryDate,
+              cardHolderName: cardHolderName,
+              cvvCode: cvvCode,
               showBackView: isCvvFocused,
-              cardBgColor: Color.fromARGB(213, 8, 197, 118),
               obscureCardNumber: true,
               obscureCardCvv: true,
-              textStyle: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
+              cardBgColor: Colors.black,
+              textStyle: TextStyle(color: Colors.white),
+              width: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 4.5,
               animationDuration: Duration(milliseconds: 1000),
-              onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {
-                print(creditCardBrand);
-              },
+              onCreditCardWidgetChange: (CreditCardBrand) {},
             ),
-          ),
-          Text("Bağış Yapmak İstediğiniz Tutarı Giriniz",
-              style: GoogleFonts.ubuntu(
-                fontSize: 20,
-                color: Colors.black,
-              )),
-          SizedBox(
-            height: 20,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

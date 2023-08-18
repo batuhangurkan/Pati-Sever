@@ -352,7 +352,6 @@ class _AccountSettingsState extends State<AccountSettings> {
                       child: ElevatedButton(
                           onPressed: () {
                             QuickAlert.show(
-                              customAsset: 'assets/images/cat_3382653.png',
                               title:
                                   "Hesabınızı silmek istediğinize emin misiniz ?",
                               text:
@@ -371,7 +370,7 @@ class _AccountSettingsState extends State<AccountSettings> {
                                     Icons.mail_outline,
                                     color: Colors.grey[400],
                                   ),
-                                  hintText: "E-posta Adresiniz",
+                                  hintText: "'delete' yazın",
                                   hintStyle: GoogleFonts.ubuntu(
                                       color: Colors.brown[400]),
                                   enabledBorder: OutlineInputBorder(

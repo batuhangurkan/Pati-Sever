@@ -207,7 +207,10 @@ class _PatiNewsState extends State<PatiNews> {
                                         leading: Icon(Icons.history),
                                         title: Text('Satın Alma Geçmişi'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('purchasehistory');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -225,6 +228,10 @@ class _PatiNewsState extends State<PatiNews> {
                                         leading: Icon(Icons.info),
                                         title: Text('Hakkında'),
                                         trailing: Icon(Icons.arrow_forward_ios),
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('appabout');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -243,7 +250,10 @@ class _PatiNewsState extends State<PatiNews> {
                                             Icon(Icons.help_center_rounded),
                                         title: Text('Yardım & Destek'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('helpsupport');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -414,7 +424,10 @@ class _PatiNewsState extends State<PatiNews> {
                                         leading: Icon(Icons.history),
                                         title: Text('Satın Alma Geçmişi'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('purchasehistory');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -432,6 +445,10 @@ class _PatiNewsState extends State<PatiNews> {
                                         leading: Icon(Icons.info),
                                         title: Text('Hakkında'),
                                         trailing: Icon(Icons.arrow_forward_ios),
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('appabout');
+                                        },
                                       ),
                                     ),
                                     SizedBox(
@@ -450,7 +467,10 @@ class _PatiNewsState extends State<PatiNews> {
                                             Icon(Icons.help_center_rounded),
                                         title: Text('Yardım & Destek'),
                                         trailing: Icon(Icons.arrow_forward_ios),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('helpsupport');
+                                        },
                                       ),
                                     ),
                                     SizedBox(

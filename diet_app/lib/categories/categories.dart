@@ -261,22 +261,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
               ),
               title: Text("Sfenks Kedisi"),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, top: 20),
-              child: Row(
-                children: [
-                  Text("Tüysüz Kedi Cinsleri",
-                      style: GoogleFonts.ubuntu(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),

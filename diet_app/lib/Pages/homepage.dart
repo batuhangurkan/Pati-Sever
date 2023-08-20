@@ -658,6 +658,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child:
+                                    Image.asset("assets/images/british.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -665,7 +669,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.asset(
+                                    "assets/images/van-kedisi.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -673,7 +680,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.asset(
+                                    "assets/images/scottish-fold1.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -681,7 +691,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child:
+                                    Image.asset("assets/images/ragdoll.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -689,7 +702,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child:
+                                    Image.asset("assets/images/muchkin.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -697,7 +713,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child:
+                                    Image.asset("assets/images/mavi-rus.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -705,7 +724,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.asset(
+                                    "assets/images/maine-coon.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -713,7 +735,9 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.asset("assets/images/siyam.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -721,7 +745,10 @@ class _HomePageState extends State<HomePage> {
                           CircleAvatar(
                             backgroundColor: Colors.deepOrangeAccent,
                             radius: 25,
-                            child: Text(""),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.asset(
+                                    "assets/images/iran-kedisi.jpg")),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -942,37 +969,146 @@ class _HomePageState extends State<HomePage> {
                                     ))),
                               ),
                               // SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
-                              Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.14,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.35,
-                                  margin: const EdgeInsets.all(15.0),
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Center(
-                                      child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.cookie,
-                                        color: Colors.deepOrangeAccent,
-                                        size: 50,
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Mama Seçimi?",
-                                        style: GoogleFonts.ubuntu(
-                                            color: Colors.deepOrangeAccent,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ))),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet<void>(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        height: 200.0,
+                                        color: Colors.white,
+                                        child: Center(
+                                          child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: [
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.15,
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.of(context)
+                                                            .pushNamed(
+                                                                'mamasecimikedi');
+                                                      },
+                                                      child: CircleAvatar(
+                                                        backgroundColor: Colors
+                                                            .deepOrangeAccent,
+                                                        radius: 50,
+                                                        child: FaIcon(
+                                                          FontAwesomeIcons.cat,
+                                                          color: Colors.white,
+                                                          size: 30,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.20,
+                                                    ),
+                                                    CircleAvatar(
+                                                      radius: 50,
+                                                      backgroundColor: Colors
+                                                          .deepOrangeAccent,
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons.dog,
+                                                        color: Colors.white,
+                                                        size: 30,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.23),
+                                                        Text(
+                                                          "Kedi",
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                            color: Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.37,
+                                                        ),
+                                                        Text(
+                                                          "Köpek",
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 15,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+                                              ]),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.14,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.35,
+                                    margin: const EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(3.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                    child: Center(
+                                        child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.cookie,
+                                          color: Colors.deepOrangeAccent,
+                                          size: 50,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "Mama Seçimi?",
+                                          style: GoogleFonts.ubuntu(
+                                              color: Colors.deepOrangeAccent,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ))),
+                              ),
                               //SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
                             ],
                           ),
@@ -981,38 +1117,140 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               //SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                              Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.14,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  margin: const EdgeInsets.all(15.0),
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Center(
-                                      child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.shower,
-                                        color: Colors.deepOrangeAccent,
-                                        size: 50,
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Patim Yıkanır Mı?",
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.ubuntu(
-                                            color: Colors.deepOrangeAccent,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ))),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet<void>(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        height: 200.0,
+                                        color: Colors.white,
+                                        child: Center(
+                                          child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: [
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.15,
+                                                    ),
+                                                    CircleAvatar(
+                                                      backgroundColor: Colors
+                                                          .deepOrangeAccent,
+                                                      radius: 50,
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons.cat,
+                                                        color: Colors.white,
+                                                        size: 30,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.20,
+                                                    ),
+                                                    CircleAvatar(
+                                                      radius: 50,
+                                                      backgroundColor: Colors
+                                                          .deepOrangeAccent,
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons.dog,
+                                                        color: Colors.white,
+                                                        size: 30,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.23),
+                                                        Text(
+                                                          "Kedi",
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                            color: Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.37,
+                                                        ),
+                                                        Text(
+                                                          "Köpek",
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 15,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+                                              ]),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.14,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.25,
+                                    margin: const EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(3.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                    child: Center(
+                                        child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.shower,
+                                          color: Colors.deepOrangeAccent,
+                                          size: 50,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "Patim Yıkanır Mı?",
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.ubuntu(
+                                              color: Colors.deepOrangeAccent,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ))),
+                              ),
                               // SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
                               Container(
                                   height:

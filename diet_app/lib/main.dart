@@ -19,6 +19,9 @@ import 'Pages/emailverificationpage.dart';
 import 'Pages/loading.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'Pages/onboardingpage.dart';
+import 'Pages/pawplan/cats/mamasecimi.dart';
+import 'Pages/pawplan/cats/yavrukedi/hangimama.dart';
+import 'Pages/pawplan/cats/yavrukedi/yavrukedimama.dart';
 import 'constants/constants.dart';
 import 'Pages/register.dart';
 import 'package:theme_manager/theme_manager.dart';
@@ -91,6 +94,9 @@ class MyApp extends StatelessWidget {
             'purchasehistory': (context) => SatinAlma(),
             'appabout': (context) => AppAbout(),
             'helpsupport': (context) => HelpSupport(),
+            'mamasecimikedi': (context) => MamaSecimi(),
+            'yavrukedimama': (context) => YavruKediMama(),
+            'hangimama': (context) => HangiMama(),
           },
         );
       },

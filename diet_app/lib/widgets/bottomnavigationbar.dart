@@ -55,8 +55,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           ),
 
           SalomonBottomBarItem(
-            icon: FaIcon(FontAwesomeIcons.newspaper),
-            title: Text("Pati Haberler"),
+            icon: FaIcon(FontAwesomeIcons.book),
+            title: Text("Pati Özel Rehber"),
             unselectedColor: Colors.deepOrangeAccent,
             selectedColor: Colors.deepOrangeAccent,
           ),

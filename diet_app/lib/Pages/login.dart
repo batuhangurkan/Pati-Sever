@@ -31,9 +31,27 @@ class _LoginPageState extends State<LoginPage> {
     return 'İyi Geceler 🌙 Pati sever!';
   }
 
+  Future sendVerification() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    SharedPreferences prefs =
+    await SharedPreferences.getInstance();
+    await prefs.getString('email' ?? '');
+    user!.sendEmailVerification();
+  }
+
   Future updateDisplayName(String newDisplayName) async {
     var user = await FirebaseAuth.instance.currentUser;
     user!.updateDisplayName(newDisplayName);
+  }
+
+  Future updatePage() async {
+    await user?.reload();
+  }
+
+  @override
+  void initState() {
+  updatePage();
+    super.initState();
   }
 
   User? user = FirebaseAuth.instance.currentUser;
@@ -194,28 +212,46 @@ class _LoginPageState extends State<LoginPage> {
                   width: MediaQuery.of(context).size.width / 1.6,
                   child: ElevatedButton(
                       onPressed: () async {
+                        await updatePage();
+
                         SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
+                        await SharedPreferences.getInstance();
                         await prefs.setString('email', _emailcontroller.text);
                         await prefs.setString(
                             'password', _passwordcontroller.text);
-                        setState(() {
-                          Future.delayed(Duration(seconds: 2), () {
-                            _authService
-                                .signIn(_emailcontroller.text,
-                                    _passwordcontroller.text)
-                                .then((value) {
+                        setState(()  {
+                          print(user?.emailVerified);
+                         updatePage();
 
-                              IconSnackBar.show(
-                                  context: context,
-                                  label: "Giriş yapılan hesap:" +
-                                      _emailcontroller.text,
-                                  snackBarType: SnackBarType.save,
-                                  duration: Duration(seconds: 3));
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/bottomnavigationbar',
-                                  (Route<dynamic> route) => false);
-                            });
+                          Future.delayed(Duration(seconds: 2), () {
+                            if (user?.emailVerified == true) {
+                              _authService
+                                  .signIn(_emailcontroller.text,
+                                  _passwordcontroller.text)
+                                  .then((value) {
+
+                                IconSnackBar.show(
+                                    context: context,
+                                    label: "Giriş yapılan hesap:" +
+                                        _emailcontroller.text,
+                                    snackBarType: SnackBarType.save,
+                                    duration: Duration(seconds: 3));
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    '/bottomnavigationbar',
+                                        (Route<dynamic> route) => false).then((value) => user?.reload());
+                              });
+
+                            }
+                            else if (user?.emailVerified == false) {
+                              sendVerification();
+                              updatePage();
+                              Navigator.of(context).pushNamedAndRemoveUntil('emailverificationpage', (route) => false);
+
+                              
+                            }
+                            else {
+                              print("bir hata oluştu");
+                            }
                           });
                           if (_emailcontroller.text == '' &&
                               _passwordcontroller.text == '') {
@@ -237,6 +273,8 @@ class _LoginPageState extends State<LoginPage> {
                                 snackBarType: SnackBarType.fail,
                                 duration: Duration(seconds: 3));
                           }
+
+
                         });
                       },
                       style: ElevatedButton.styleFrom(
@@ -271,13 +309,13 @@ class _LoginPageState extends State<LoginPage> {
                             style: GoogleFonts.poppins(
                                 color: Colors.grey[200], fontSize: 15),
                             children: [
-                          TextSpan(
-                              text: "Kayıt Olun",
-                              style: TextStyle(
-                                  color: Colors.blueAccent[200],
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold))
-                        ])),
+                              TextSpan(
+                                  text: "Kayıt Olun",
+                                  style: TextStyle(
+                                      color: Colors.blueAccent[200],
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold))
+                            ])),
                   ),
                 ),
               ],

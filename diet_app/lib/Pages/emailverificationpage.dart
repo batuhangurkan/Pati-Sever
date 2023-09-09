@@ -86,7 +86,8 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
               width: MediaQuery.of(context).size.width * 0.5,
               child: ElevatedButton(
                 onPressed: () async {
-                  Navigator.pushNamed(context, 'login');
+                 await user?.reload();
+                  Navigator.pushNamed(context, 'login').then((value) => user?.reload());
                 },
                 child: Text("Devam et"),
                 style: ElevatedButton.styleFrom(

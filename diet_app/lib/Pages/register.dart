@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 120,
+                    height: 80,
                   ),
                   Text("Kayıt Sayfası,",
                       style: GoogleFonts.rubik(
@@ -257,10 +257,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 1.6,
+                    width: MediaQuery.of(context).size.width / 1.5,
                     child: ElevatedButton(
                         onPressed: () async {
-
+                          await user?.reload();
 
                             SharedPreferences prefs =
                             await SharedPreferences.getInstance();
@@ -269,7 +269,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           if (_emailController.text.isNotEmpty &&
                               _passwordController.text.isNotEmpty &&
                               _passwordAgainController.text.isNotEmpty &&
-                              _usernameController.text.isNotEmpty) {
+                              _usernameController.text.isNotEmpty && _checkvisibility == true ) {
                             setState(() {
 
                               _authService
@@ -287,7 +287,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                   snackBarType: SnackBarType.save, label: 'Başarılı bir şekilde kayıt oldunuz!');
 
                             });
-                          } else {
+                          } else if (  _checkvisibility = false) {
+
+                            IconSnackBar.show(
+                                duration: Duration(seconds: 3),
+                                context: context,
+                                snackBarType: SnackBarType.fail,
+                                label: 'Kullanım koşullarını kabul etmeden kayıt olamazsınız!');
+                          }
+                          else {
                             IconSnackBar.show(
                                 duration: Duration(seconds: 3),
                                 context: context,
@@ -316,10 +324,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               builder: (context) => RegisterPage()));
                     },
                     child: Container(
-                        margin: EdgeInsets.only(top: 40),
+                        margin: EdgeInsets.only(top: 20),
                         child: CheckboxListTile(
+                          checkColor: Colors.deepOrangeAccent,
+                          fillColor: MaterialStateProperty.all(Colors.white),
                           title: Text(
-                            "Kullanım Koşulları ve Gizlilik Politikası Okudum Kabul ediyorum",
+                            "Kullanım Koşulları ve Gizlilik Politikası",
                             style: GoogleFonts.ubuntu(
                                 fontSize: 15,
                                 color: Colors.grey[200],
@@ -341,8 +351,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                         TextButton(
                                             onPressed: () {
                                               Navigator.pop(context);
-                                              if (_checkvisibility == false) {
+                                              if (_checkvisibility == true) {
                                                 setState(() {
+
                                                   _checkvisibility = newValue!;
                                                 });
                                               }
@@ -351,8 +362,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                         TextButton(
                                             onPressed: () {
                                               setState(() {
-                                                if (_checkvisibility == true) {
+                                                if (_checkvisibility == false) {
                                                   _checkvisibility = newValue!;
+                                                  Navigator.pop(context);
                                                 } else {
                                                   _checkvisibility = newValue!;
                                                 }

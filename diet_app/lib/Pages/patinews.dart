@@ -56,9 +56,9 @@ class _PatiNewsState extends State<PatiNews> {
     return RefreshIndicator(
       onRefresh: refresh,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          title: Text('Pati Haberler',
+          title: Text('Pati Özel Rehber',
               style: GoogleFonts.ubuntu(
                 fontSize: 20,
                 color: Colors.black,
@@ -622,24 +622,31 @@ class _PatiNewsState extends State<PatiNews> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
                   Map wppost = snapshot.data![index];
-                  return Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(wppost["_embedded"]
-                            ["wp:featuredmedia"][0]["source_url"]),
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 1, left: 1, right: 1, bottom: 0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(30)),
+                         ),
+                      child: Card(
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(wppost["_embedded"]
+                                ["wp:featuredmedia"][0]["source_url"]),
+                          ),
+                          title: Text(
+                            wppost["title"]["rendered"].replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ""),
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+
+                          ),
+                          subtitle: InkWell(child: Text("Devamını Görmek İçin Tıklayınız", style: GoogleFonts.ubuntu(color: Colors.grey[500], fontWeight: FontWeight.bold),), onTap: () {},
+                          ),
+
+                          onTap: () {},
+                        ),
                       ),
-                      title: Text(
-                        wppost["title"]["rendered"],
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        wppost["excerpt"]["rendered"]
-                            .replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ""),
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 15, fontWeight: FontWeight.normal),
-                      ),
-                      onTap: () {},
                     ),
                   );
                 },

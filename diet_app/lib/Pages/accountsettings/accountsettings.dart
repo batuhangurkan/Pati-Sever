@@ -55,7 +55,6 @@ class _AccountSettingsState extends State<AccountSettings> {
       "imageUrl": imageUrl,
     });
   }
-
   String imageUrl = "";
   String deleteAccount = "delete";
   TextEditingController _deleteAccountController = TextEditingController();
@@ -66,6 +65,19 @@ class _AccountSettingsState extends State<AccountSettings> {
   bool isvisible = false;
   bool isvisible2 = false;
   TextEditingController _emailcontroller = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordConfirmController = TextEditingController();
+
+
+  Future _updatePassword(String password) async {
+    try {
+      await FirebaseAuth.instance.currentUser!
+          .updatePassword(_passwordController.text.trim())
+          .then((value) => print("Şifre güncellendi."));
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   void initState() {
@@ -240,19 +252,21 @@ class _AccountSettingsState extends State<AccountSettings> {
             Container(
               padding: EdgeInsets.all(15),
               child: TextFormField(
+                readOnly: true,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.mail_lock_outlined,
                     color: Colors.grey[400],
                   ),
                   hintText: user?.email ?? "E-posta Adresiniz",
+
                   hintStyle: GoogleFonts.ubuntu(color: Colors.brown[400]),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                 ),
               ),
@@ -260,6 +274,7 @@ class _AccountSettingsState extends State<AccountSettings> {
             Container(
               padding: EdgeInsets.all(15),
               child: TextFormField(
+                controller: _passwordController,
                 obscureText: isvisible,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -292,6 +307,7 @@ class _AccountSettingsState extends State<AccountSettings> {
             Container(
               padding: EdgeInsets.all(15),
               child: TextFormField(
+                controller: _passwordConfirmController,
                 obscureText: true,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -316,7 +332,23 @@ class _AccountSettingsState extends State<AccountSettings> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if(_passwordController.text == _passwordConfirmController.text) {
+                      _updatePassword(_passwordController.text.trim());
+                      setState(() {
+                        _passwordController.clear();
+                        _passwordConfirmController.clear();
+                        Navigator.of(context).pushNamedAndRemoveUntil('login', (route) => false);
+                      });
+                      var snackBar = SnackBar(
+                        content: Text("Şfreniz başarıyla güncellendi."),
+                        duration: Duration(seconds: 2, milliseconds: 500),
+                        backgroundColor: Colors.green,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Future.delayed(Duration(seconds: 2), () {});
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     padding:
                         EdgeInsets.all(15.0), //content padding inside button
@@ -391,6 +423,13 @@ class _AccountSettingsState extends State<AccountSettings> {
                                       MaterialPageRoute(
                                           builder: (context) => LoginPage()),
                                       (route) => false);
+                                  var snackBar = SnackBar(
+                                    content: Text("Pati Sever Hesabınız Silindi."),
+                                    duration: Duration(seconds: 2, milliseconds: 500),
+                                    backgroundColor: Colors.green,
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                  Future.delayed(Duration(seconds: 2), () {});
                                 } else {}
                               },
                               onCancelBtnTap: () {
